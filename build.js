@@ -8,7 +8,11 @@ const ejs = require('ejs');
 // set this to '/<repo-name>'. If it's a root site at
 // https://<username>.github.io/, or you're using a custom domain, leave
 // this as an empty string.
-const BASE_PATH = '';
+//
+// Check your actual live URL to know which case you're in — if it has
+// anything after the first slash past ".github.io/", that's your repo
+// name and it needs to go here.
+const BASE_PATH = '/portfolio-website';
 
 const ROOT_DIR = __dirname;
 const OUTPUT_DIR = path.join(ROOT_DIR, 'docs');
@@ -49,6 +53,11 @@ async function build() {
 
   // Copy static assets (css, js, images, videos) over as-is
   copyDir(PUBLIC_DIR, OUTPUT_DIR);
+
+  // Tells GitHub Pages to skip its default Jekyll processing step, which
+  // otherwise ignores certain file/folder naming patterns you don't need
+  // here but is worth ruling out as a source of missing files.
+  fs.writeFileSync(path.join(OUTPUT_DIR, '.nojekyll'), '');
 
   const projects = getProjects();
   const heroProjects = projects.filter((p) => p.featured);
