@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Juneon Kim — Portfolio</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <a href="/"><h1>Juneon Kim</h1></a>
+    <p>3D Environment Artist</p>
+    <nav class="nav-links">
+      <a href="/project">Projects</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+
+<section class="hero">
+  <div class="hero-row">
+    
+      <button type="button" class="hero-arrow hero-arrow-prev" id="heroPrev" aria-label="Previous featured project">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+    
+    <div class="hero-media" id="heroMedia">
+      <div class="hero-track" id="heroTrack">
+        <img class="hero-slide-side" id="heroImagePrev" alt="" draggable="false">
+        <a href="/project/abandoned-train-station" class="hero-slide-current" id="heroLink">
+          <img
+            src="/images/full/back.png"
+            alt="Abandoned Train Station"
+            id="heroImage"
+            draggable="false">
+        </a>
+        <img class="hero-slide-side" id="heroImageNext" alt="" draggable="false">
+      </div>
+      <span class="hero-tag" id="heroTag">Abandoned Train Station — Unreal Engine 5</span>
+      <div class="hero-image-dots" id="heroImageDots"></div>
+      
+        <div class="hero-project-dots" id="heroProjectDots"></div>
+      
+    </div>
+    
+      <button type="button" class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next featured project">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    
+  </div>
+  <div class="hero-info">
+    <h2 id="heroInfoTitle">Abandoned Train Station — Unreal Engine 5</h2>
+    <p id="heroInfoDesc">A weathered sci-fi outpost exploring modular kitbashing and lighting mood.</p>
+  </div>
+</section>
+
+<script type="application/json" id="hero-data">[{"slug":"abandoned-train-station","title":"Abandoned Train Station","engine":"Unreal Engine 5","featured":true,"tags":["Sci-Fi","Unreal Engine 5"],"cover":"/images/thumbs/outpost-01.jpg","media":[{"type":"image","src":"/images/full/back.png"},{"type":"image","src":"/images/full/front_right.png"},{"type":"video","src":"/videos/outpost-flythrough.mp4"}],"description":"A weathered sci-fi outpost exploring modular kitbashing and lighting mood."},{"slug":"dragon-kisser","title":"Dragon Kisser","engine":"Unreal Engine 5","featured":true,"tags":["Interior","Hand-Painted"],"cover":"/images/thumbs/forgotten-workshop.jpg","media":[{"type":"image","src":"/images/full/Jun_Materials.png"},{"type":"image","src":"/images/full/Jun_Decals.png"}],"description":"A cluttered artisan's workshop study in warm practical lighting and hand-painted texture detail."}]</script>
+<script src="/js/hero.js" defer></script>
+
+<h2 class="section-label">Selected Works</h2>
+<div class="grid">
+  
+    <a href="/project/abandoned-train-station" class="card">
+      <div class="thumb-wrap">
+        <img src="/images/thumbs/outpost-01.jpg" alt="Abandoned Train Station" loading="lazy">
+      </div>
+      <h3>Abandoned Train Station</h3>
+    </a>
+  
+    <a href="/project/dragon-kisser" class="card">
+      <div class="thumb-wrap">
+        <img src="/images/thumbs/forgotten-workshop.jpg" alt="Dragon Kisser" loading="lazy">
+      </div>
+      <h3>Dragon Kisser</h3>
+    </a>
+  
+    <a href="/project/wooden-crate" class="card">
+      <div class="thumb-wrap">
+        <img src="/images/thumbs/cyberpunk-alleyway.jpg" alt="Wooden Crate" loading="lazy">
+      </div>
+      <h3>Wooden Crate</h3>
+    </a>
+  
+    <a href="/project/stylized-rock-formations" class="card">
+      <div class="thumb-wrap">
+        <img src="/images/thumbs/stylized-rock-formations.jpg" alt="Stylized Rock Formations" loading="lazy">
+      </div>
+      <h3>Stylized Rock Formations</h3>
+    </a>
+  
+</div>
+</main>
+  <footer>
+    <p>Contact: ldskimje@gmail.com</p>
+    <p>Copyright &copy; 2026 Juneon Kim. All rights reserved.</p>
+  </footer>
+</body>
+</html>
