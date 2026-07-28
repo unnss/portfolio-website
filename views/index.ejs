@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+  <div class="hero-row">
+    <% if (heroProjects.length > 1) { %>
+      <button type="button" class="hero-arrow hero-arrow-prev" id="heroPrev" aria-label="Previous featured project">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+    <% } %>
+    <div class="hero-media" id="heroMedia">
+      <div class="hero-track" id="heroTrack">
+        <img class="hero-slide-side" id="heroImagePrev" alt="" draggable="false">
+        <a href="/project/<%= heroProjects[0].slug %>" class="hero-slide-current" id="heroLink">
+          <img
+            src="<%= (heroProjects[0].media.find(m => m.type === 'image') || { src: heroProjects[0].cover }).src %>"
+            alt="<%= heroProjects[0].title %>"
+            id="heroImage"
+            draggable="false">
+        </a>
+        <img class="hero-slide-side" id="heroImageNext" alt="" draggable="false">
+      </div>
+      <span class="hero-tag" id="heroTag"><%= heroProjects[0].title %> — <%= heroProjects[0].engine %></span>
+      <div class="hero-image-dots" id="heroImageDots"></div>
+      <% if (heroProjects.length > 1) { %>
+        <div class="hero-project-dots" id="heroProjectDots"></div>
+      <% } %>
+    </div>
+    <% if (heroProjects.length > 1) { %>
+      <button type="button" class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next featured project">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    <% } %>
+  </div>
+  <div class="hero-info">
+    <h2 id="heroInfoTitle"><%= heroProjects[0].title %> — <%= heroProjects[0].engine %></h2>
+    <p id="heroInfoDesc"><%= heroProjects[0].description %></p>
+  </div>
+</section>
+
+<script type="application/json" id="hero-data"><%- JSON.stringify(heroProjects).replace(/</g, '\u003c') %></script>
+<script src="/js/hero.js" defer></script>
+
+<h2 class="section-label">Selected Works</h2>
+<div class="grid">
+  <% projects.forEach(p => { %>
+    <a href="/project/<%= p.slug %>" class="card">
+      <div class="thumb-wrap">
+        <img src="<%= p.cover %>" alt="<%= p.title %>" loading="lazy">
+      </div>
+      <h3><%= p.title %></h3>
+    </a>
+  <% }) %>
+</div>
+<%- include('partials/footer') %>

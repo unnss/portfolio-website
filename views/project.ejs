@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<h1><%= project.title %></h1>
+<p class="tags"><%= project.tags.join(' · ') %></p>
+<p><%= project.description %></p>
+
+<div class="media-stack">
+  <% project.media.forEach(m => { %>
+    <% if (m.type === 'image') { %>
+      <img src="<%= m.src %>" loading="lazy">
+    <% } else if (m.type === 'video') { %>
+      <video controls preload="metadata" playsinline>
+        <source src="<%= m.src %>" type="video/mp4">
+      </video>
+    <% } %>
+  <% }) %>
+</div>
+<%- include('partials/footer') %>
