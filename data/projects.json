@@ -4,48 +4,38 @@
     "title": "Abandoned Train Station",
     "engine": "Unreal Engine 5",
     "featured": true,
-    "tags": ["Sci-Fi", "Unreal Engine 5"],
+    "tags": ["Unreal Engine 5"],
     "cover": "/images/thumbs/outpost-01.jpg",
     "media": [
-      { "type": "image", "src": "/images/full/back.png" },
-      { "type": "image", "src": "/images/full/front_right.png" },
-      { "type": "video", "src": "/videos/outpost-flythrough.mp4" }
+
     ],
-    "description": "A weathered sci-fi outpost exploring modular kitbashing and lighting mood."
+    "description": "Personal project."
   },
   {
     "slug": "dragon-kisser",
     "title": "Dragon Kisser",
     "engine": "Unreal Engine 5",
     "featured": true,
-    "tags": ["Interior", "Hand-Painted"],
+    "tags": ["Game Environment", "Real-Time", "Unreal Engine 5"],
     "cover": "/images/thumbs/forgotten-workshop.jpg",
     "media": [
-      { "type": "image", "src": "/images/full/Jun_Materials.png" },
-      { "type": "image", "src": "/images/full/Jun_Decals.png" }
+      { "type": "image", "src": "/images/full/Dragon Kisser/Jun_Materials.png" },
+      { "type": "image", "src": "/images/full/Dragon Kisser/Jun_Decals.png" }
     ],
-    "description": "A cluttered artisan's workshop study in warm practical lighting and hand-painted texture detail."
+    "description": "A environment made for BYU Video Game Capston project."
   },
   {
     "slug": "wooden-crate",
     "title": "Wooden Crate",
-    "engine": "Unreal Engine 5",
-    "tags": ["Sci-Fi", "Neon", "Modular"],
+    "engine": "Houdini",
+    "tags": ["Asset", "Neon", "Modular"],
     "cover": "/images/thumbs/cyberpunk-alleyway.jpg",
     "media": [
-      { "type": "image", "src": "/images/full/cyberpunk-alleyway-01.jpg" }
+      { "type": "image", "src": "/images/full/Wooden Crate/back.png" },
+      { "type": "image", "src": "/images/full/Wooden Crate/front_right.png" },
+      { "type": "image", "src": "/images/full/Wooden Crate/front.png" },
+      { "type": "image", "src": "/images/full/Wooden Crate/top.png" }
     ],
-    "description": "A dense neon-lit alley kit exploring emissive material work and volumetric fog."
-  },
-  {
-    "slug": "stylized-rock-formations",
-    "title": "Stylized Rock Formations",
-    "engine": "ZBrush / Substance",
-    "tags": ["Sculpt", "Study"],
-    "cover": "/images/thumbs/stylized-rock-formations.jpg",
-    "media": [
-      { "type": "image", "src": "/images/full/stylized-rock-formations-01.jpg" }
-    ],
-    "description": "A material study exploring stylized rock sculpting and hand-painted texture breakup."
+    "description": "Asset material."
   }
 ]
