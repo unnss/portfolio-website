@@ -12,7 +12,7 @@ const ejs = require('ejs');
 // Check your actual live URL to know which case you're in — if it has
 // anything after the first slash past ".github.io/", that's your repo
 // name and it needs to go here.
-const BASE_PATH = '';
+const BASE_PATH = '/portfolio-website';
 
 const ROOT_DIR = __dirname;
 const OUTPUT_DIR = path.join(ROOT_DIR, 'docs');
