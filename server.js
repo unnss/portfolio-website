@@ -11,7 +11,17 @@ app.get('/', (req, res) => {
   const projects = getProjects();
   const heroProjects = projects.filter(p => p.featured);
   const resolvedHero = heroProjects.length ? heroProjects : [projects[0]];
-  res.render('index', { projects, heroProjects: resolvedHero });
+
+  // Same priority as imagesFor() in hero.js: dedicated wide heroImages
+  // first, then media images, then the cover — kept in sync so the first
+  // paint (before hero.js runs) matches what the script would show anyway.
+  const firstProject = resolvedHero[0];
+  const firstProjectImages = (firstProject.heroImages && firstProject.heroImages.length)
+    ? firstProject.heroImages
+    : (firstProject.media || []).filter(m => m.type === 'image').map(m => m.src);
+  const heroFirstImage = firstProjectImages.length ? firstProjectImages[0] : firstProject.cover;
+
+  res.render('index', { projects, heroProjects: resolvedHero, heroFirstImage });
 });
 
 app.get('/project/:slug', (req, res) => {

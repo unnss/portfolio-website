@@ -5,9 +5,12 @@
     "engine": "Unreal Engine 5",
     "featured": true,
     "tags": ["Unreal Engine 5"],
-    "cover": "/images/thumbs/outpost-01.jpg",
+    "cover": "/images/thumbs/abandoned-train-station-thumb.png",
+    "heroImages": [
+      "/images/hero/abandoned-train-station/abandoned-train-station-wide-01.png"
+    ],
     "media": [
-
+      { "type": "image", "src": "/images/full/abandoned-train-station/shot1.png" }
     ],
     "description": "Personal project."
   },
@@ -17,10 +20,13 @@
     "engine": "Unreal Engine 5",
     "featured": true,
     "tags": ["Game Environment", "Real-Time", "Unreal Engine 5"],
-    "cover": "/images/thumbs/forgotten-workshop.jpg",
+    "cover": "/images/thumbs/dk-thumb.png",
+    "heroImages": [
+      "/images/hero/dragon-kisser/dk-wide-01.png"
+    ],
     "media": [
-      { "type": "image", "src": "/images/full/Dragon Kisser/Jun_Materials.png" },
-      { "type": "image", "src": "/images/full/Dragon Kisser/Jun_Decals.png" }
+      { "type": "image", "src": "/images/full/Dragon-Kisser/Jun_Materials.png" },
+      { "type": "image", "src": "/images/full/Dragon-Kisser/Jun_Decals.png" }
     ],
     "description": "A environment made for BYU Video Game Capston project."
   },
@@ -28,13 +34,14 @@
     "slug": "wooden-crate",
     "title": "Wooden Crate",
     "engine": "Houdini",
+    "featured": false,
     "tags": ["Asset", "Neon", "Modular"],
-    "cover": "/images/thumbs/cyberpunk-alleyway.jpg",
+    "cover": "/images/thumbs/wooden-crate-thumb.png",
     "media": [
-      { "type": "image", "src": "/images/full/Wooden Crate/back.png" },
-      { "type": "image", "src": "/images/full/Wooden Crate/front_right.png" },
-      { "type": "image", "src": "/images/full/Wooden Crate/front.png" },
-      { "type": "image", "src": "/images/full/Wooden Crate/top.png" }
+      { "type": "image", "src": "/images/full/Wooden-Crate/front.png" },
+      { "type": "image", "src": "/images/full/Wooden-Crate/back.png" },
+      { "type": "image", "src": "/images/full/Wooden-Crate/top.png" },
+      { "type": "image", "src": "/images/full/Wooden-Crate/front_right.png" }
     ],
     "description": "Asset material."
   }

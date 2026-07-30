@@ -1,4 +1,18 @@
 (function () {
+  // ----------------------------------------------------------------------
+  // CHANGES IN THIS VERSION:
+  // 1. Dynamic iteration confirmed/clarified — goToProject() already wraps
+  //    using `% heroProjects.length`, so it works correctly for any number
+  //    of featured projects the server sends (2, 5, 20 — no assumption
+  //    about count is baked in anywhere below). Comments added to make
+  //    this explicit.
+  // 2. Removed the fixed bottom-left "project dots" indicator entirely —
+  //    projectDotsWrap and its rebuild logic are gone. Next/Previous
+  //    arrows (and swipe, for images) are now the only navigation UI.
+  // 3. Everything else (image drag/swipe, image dots, click-to-navigate)
+  //    is unchanged from before.
+  // ----------------------------------------------------------------------
+
   const dataEl = document.getElementById('hero-data');
   if (!dataEl) return;
 
@@ -15,15 +29,22 @@
   const heroInfoTitle = document.getElementById('heroInfoTitle');
   const heroInfoDesc = document.getElementById('heroInfoDesc');
   const imageDotsWrap = document.getElementById('heroImageDots');
-  const projectDotsWrap = document.getElementById('heroProjectDots');
+  // Note: no projectDotsWrap anymore — the bottom-left indicator is gone.
 
   let projectIndex = 0;
   let imageIndex = 0;
   let justSwiped = false;
 
-  // Only images (not videos) make sense as hero slides. Falls back to the
-  // project's cover image if its media array has no images at all.
+  // Hero slides prefer a project's dedicated `heroImages` — wide (21:9)
+  // renders composed specifically for this banner — over the images in its
+  // `media` array, which are meant for the project detail page instead and
+  // are usually a different aspect ratio. Falls back to `media` images
+  // (then the cover) for any project that doesn't have heroImages yet, so
+  // nothing breaks for projects you haven't made wide versions for.
   function imagesFor(project) {
+    if (project.heroImages && project.heroImages.length) {
+      return project.heroImages;
+    }
     const imgs = (project.media || [])
       .filter((m) => m.type === 'image')
       .map((m) => m.src);
@@ -73,8 +94,9 @@
 
   // instant = true: sync immediately, no visible jump expected (drag just
   // finished, or this is the first paint).
-  // instant = falsy: used for button/arrow clicks, where there's no drag
-  // motion to continue — fade the track out, swap content, fade back in.
+  // instant = falsy: used for Next/Previous/image-dot clicks, where there's
+  // no drag motion to continue — fade the track out, swap content, fade
+  // back in. This is the "smooth transition between projects" behavior.
   function render(instant) {
     if (instant) {
       syncTrack();
@@ -115,26 +137,14 @@
       });
     }
 
-    // Rebuild the bottom-left project position dots
-    if (projectDotsWrap) {
-      projectDotsWrap.innerHTML = '';
-      heroProjects.forEach((p, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'project-dot' + (i === projectIndex ? ' active' : '');
-        btn.setAttribute('aria-label', 'Show featured project ' + (i + 1) + ' of ' + heroProjects.length);
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          projectIndex = i;
-          imageIndex = 0;
-          render();
-        });
-        projectDotsWrap.appendChild(btn);
-      });
-    }
+    // (Bottom-left project-position dots used to be rebuilt here — removed.)
   }
 
+  // Dynamic iteration: heroProjects.length is read fresh every call, not
+  // cached or hardcoded anywhere, so this correctly wraps around whether
+  // there are 2 featured projects or 20. Negative results from a "Previous"
+  // click at index 0 are corrected back into range by the "+ heroProjects.length"
+  // before the modulo, which is what makes wraparound work in both directions.
   function goToProject(delta) {
     projectIndex = (projectIndex + delta + heroProjects.length) % heroProjects.length;
     imageIndex = 0;
@@ -240,6 +250,9 @@
     }
   });
 
+  // Next/Previous — switch which featured project the hero displays.
+  // Only wired up if the buttons exist in the markup (index.ejs only
+  // renders them when there's more than one featured project).
   const heroPrev = document.getElementById('heroPrev');
   const heroNext = document.getElementById('heroNext');
   if (heroPrev) heroPrev.addEventListener('click', () => goToProject(-1));

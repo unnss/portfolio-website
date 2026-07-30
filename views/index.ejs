@@ -10,9 +10,9 @@
     <div class="hero-media" id="heroMedia">
       <div class="hero-track" id="heroTrack">
         <img class="hero-slide-side" id="heroImagePrev" alt="" draggable="false">
-        <a href="/project/<%= heroProjects[0].slug %>" class="hero-slide-current" id="heroLink">
+        <a href="/project/<%= heroProjects[0].slug %>" class="hero-slide-current" id="heroLink" draggable="false">
           <img
-            src="<%= (heroProjects[0].media.find(m => m.type === 'image') || { src: heroProjects[0].cover }).src %>"
+            src="<%= heroFirstImage %>"
             alt="<%= heroProjects[0].title %>"
             id="heroImage"
             draggable="false">
@@ -21,9 +21,6 @@
       </div>
       <span class="hero-tag" id="heroTag"><%= heroProjects[0].title %> — <%= heroProjects[0].engine %></span>
       <div class="hero-image-dots" id="heroImageDots"></div>
-      <% if (heroProjects.length > 1) { %>
-        <div class="hero-project-dots" id="heroProjectDots"></div>
-      <% } %>
     </div>
     <% if (heroProjects.length > 1) { %>
       <button type="button" class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next featured project">
