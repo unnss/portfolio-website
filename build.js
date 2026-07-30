@@ -12,7 +12,7 @@ const ejs = require('ejs');
 // Check your actual live URL to know which case you're in — if it has
 // anything after the first slash past ".github.io/", that's your repo
 // name and it needs to go here.
-const BASE_PATH = '/portfolio-website';
+const BASE_PATH = '';
 
 const ROOT_DIR = __dirname;
 const OUTPUT_DIR = path.join(ROOT_DIR, 'docs');
@@ -63,10 +63,19 @@ async function build() {
   const heroProjects = projects.filter((p) => p.featured);
   const resolvedHero = heroProjects.length ? heroProjects : [projects[0]];
 
+  // Same priority as imagesFor() in hero.js: dedicated wide heroImages
+  // first, then media images, then the cover.
+  const firstProject = resolvedHero[0];
+  const firstProjectImages = (firstProject.heroImages && firstProject.heroImages.length)
+    ? firstProject.heroImages
+    : (firstProject.media || []).filter((m) => m.type === 'image').map((m) => m.src);
+  const heroFirstImage = firstProjectImages.length ? firstProjectImages[0] : firstProject.cover;
+
   // Home page — same data server.js would have passed to index.ejs
   const indexHtml = await ejs.renderFile(path.join(VIEWS_DIR, 'index.ejs'), {
     projects,
     heroProjects: resolvedHero,
+    heroFirstImage,
   });
   writeFile(path.join(OUTPUT_DIR, 'index.html'), withBasePath(indexHtml));
 

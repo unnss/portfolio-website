@@ -135,7 +135,7 @@ main {
   overflow: hidden;
   border: 1px solid var(--border);
   aspect-ratio: 21 / 9;
-  width: min(100%, 900px);   /* smaller and capped, rather than full column width */
+  width: min(100%, 1200px);   /* capped, rather than full column width */
   user-select: none;
   touch-action: pan-y;   /* let vertical page-scroll through, we handle horizontal ourselves */
 }
@@ -160,6 +160,7 @@ main {
   height: 100%;
   display: block;
   transform: translateX(0);
+  -webkit-user-drag: none;
 }
 .hero-slide-current img {
   width: 100%;
@@ -184,13 +185,13 @@ main {
 #heroImageNext { transform: translateX(100%); }
 .hero-tag {
   position: absolute;
-  left: 1.25rem;
-  bottom: 1.25rem;
+  left: 0;
+  bottom: 0;
   padding: 0.5rem 0.9rem;
   background: rgba(21, 23, 27, 0.75);
   backdrop-filter: blur(6px);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 0 4px 0 0;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 0.95rem;
@@ -246,32 +247,8 @@ main {
   width: 26px;
 }
 
-/* Dots bottom-left: which featured project you're on */
-.hero-project-dots {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  display: flex;
-  gap: 0.4rem;
-  z-index: 2;
-}
-.hero-project-dots button {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-  background: rgba(233, 231, 226, 0.35);
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-.hero-project-dots button.active {
-  background: var(--rim);
-  transform: scale(1.2);
-}
-
 .hero-info {
-  width: min(100%, 900px);
+  width: min(100%, 1200px);
   margin: 0 auto;
   padding: 1.5rem 0 0;
 }
