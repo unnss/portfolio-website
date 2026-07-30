@@ -31,6 +31,23 @@
   const imageDotsWrap = document.getElementById('heroImageDots');
   // Note: no projectDotsWrap anymore — the bottom-left indicator is gone.
 
+  // Detect this deployment's base path — '' when running locally, or
+  // something like '/portfolio-website' on a GitHub Pages project site.
+  // build.js already bakes the correct prefix into the server-rendered
+  // HTML; this reads that back out by comparing heroLink's initial href
+  // against the slug we know it points to, so every href/src this script
+  // sets afterward (switching projects, images, etc.) keeps that same
+  // prefix instead of silently dropping it.
+  const initialSlugPath = '/project/' + heroProjects[0].slug;
+  const initialHref = heroLink.getAttribute('href') || '';
+  const basePrefix = initialHref.endsWith(initialSlugPath)
+    ? initialHref.slice(0, initialHref.length - initialSlugPath.length)
+    : '';
+
+  function withBase(src) {
+    return basePrefix + src;
+  }
+
   let projectIndex = 0;
   let imageIndex = 0;
   let justSwiped = false;
@@ -81,10 +98,10 @@
     if (imageIndex >= images.length) imageIndex = 0;
     const { prev, next } = neighborIndices(images, imageIndex);
 
-    heroImagePrev.src = images[prev];
-    heroImage.src = images[imageIndex];
+    heroImagePrev.src = withBase(images[prev]);
+    heroImage.src = withBase(images[imageIndex]);
     heroImage.alt = project.title;
-    heroImageNext.src = images[next];
+    heroImageNext.src = withBase(images[next]);
 
     setTrackTransition('none');
     setTrackTransform('-100%', '0%', '100%');
@@ -115,7 +132,7 @@
     heroTag.textContent = project.title + ' — ' + project.engine;
     heroInfoTitle.textContent = project.title + ' — ' + project.engine;
     heroInfoDesc.textContent = project.description;
-    heroLink.href = '/project/' + project.slug;
+    heroLink.href = withBase('/project/' + project.slug);
 
     const images = imagesFor(project);
 

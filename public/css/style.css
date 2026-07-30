@@ -134,11 +134,11 @@ main {
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
-  /* At the old 1200px width, 21/9 gave a height of ~514px. This ratio is
-     recalculated for the new 1280px width so the height stays the same —
-     widening the box without also making it taller. If you change the
-     width below again, recompute this as new-width / 514. */
-  aspect-ratio: 1280 / 514;
+  /* Banner proportions: kept at 1280px wide, but shorter than a typical
+     photo crop. Height picked directly (400px) rather than derived from
+     the old ratio — if you want it shorter/taller still, just change the
+     second number here. */
+  aspect-ratio: 1280 / 400;
   width: min(100%, 1280px);   /* capped, rather than full column width */
   user-select: none;
   touch-action: pan-y;   /* let vertical page-scroll through, we handle horizontal ourselves */
