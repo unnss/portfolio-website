@@ -134,8 +134,12 @@ main {
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
-  aspect-ratio: 21 / 9;
-  width: min(100%, 1200px);   /* capped, rather than full column width */
+  /* At the old 1200px width, 21/9 gave a height of ~514px. This ratio is
+     recalculated for the new 1280px width so the height stays the same —
+     widening the box without also making it taller. If you change the
+     width below again, recompute this as new-width / 514. */
+  aspect-ratio: 1280 / 514;
+  width: min(100%, 1280px);   /* capped, rather than full column width */
   user-select: none;
   touch-action: pan-y;   /* let vertical page-scroll through, we handle horizontal ourselves */
 }
@@ -248,7 +252,7 @@ main {
 }
 
 .hero-info {
-  width: min(100%, 1200px);
+  width: min(100%, 1280px);
   margin: 0 auto;
   padding: 1.5rem 0 0;
 }
@@ -388,6 +392,75 @@ main > p {
 }
 .back-link:hover { color: var(--accent); }
 
+/* ---- About page ---- */
+.about {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 3rem 0 4rem;
+  flex-wrap: wrap;
+}
+.about-photo {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.about-text {
+  flex: 1;
+  min-width: 260px;
+}
+.about-text h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem;
+}
+.about-role {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+}
+.about-text p:not(.about-role) {
+  max-width: 60ch;
+  color: var(--text-muted);
+}
+
+/* ---- Home page contact section ---- */
+.contact-section {
+  padding-bottom: 4rem;
+}
+.contact-section > p {
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+.contact-email a {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+.contact-email a:hover { color: var(--accent); }
+
+/* Row of social/portfolio links — used in the home Contact section and
+   in the expanded footer on Project/About pages */
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+.footer-links a { transition: color 0.2s ease; }
+.footer-links a:hover { color: var(--rim); }
+
 /* ---- Footer ---- */
 footer {
   border-top: 1px solid var(--border);
@@ -398,6 +471,21 @@ footer {
   color: var(--text-muted);
 }
 footer a:hover { color: var(--rim); }
+
+/* Expanded variant shown on Project/About pages — contact + links stacked
+   above the copyright line, still centered like the plain footer */
+footer.footer-expanded {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+footer.footer-expanded p:first-child {
+  color: var(--text);
+  margin: 0 0 0.75rem;
+}
+footer.footer-expanded .footer-links {
+  justify-content: center;
+  margin: 0 0 1.5rem;
+}
 
 /* ---- Focus states (accessibility) ---- */
 a:focus-visible,
@@ -426,4 +514,6 @@ button:focus-visible {
   }
   .nav-links { margin-left: 0; gap: 1.25rem; }
   .grid { grid-template-columns: 1fr; padding: 2rem 0; }
+  .about { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem 0 3rem; }
+  .about-photo { width: 200px; height: 200px; }
 }

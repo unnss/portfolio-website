@@ -4,6 +4,7 @@
     "title": "Abandoned Train Station",
     "engine": "Unreal Engine 5",
     "featured": true,
+    "category": "Environment",
     "tags": ["Unreal Engine 5"],
     "cover": "/images/thumbs/abandoned-train-station-thumb.png",
     "heroImages": [
@@ -19,6 +20,7 @@
     "title": "Dragon Kisser",
     "engine": "Unreal Engine 5",
     "featured": true,
+    "category": "Environment",
     "tags": ["Game Environment", "Real-Time", "Unreal Engine 5"],
     "cover": "/images/thumbs/dk-thumb.png",
     "heroImages": [
@@ -35,6 +37,7 @@
     "title": "Wooden Crate",
     "engine": "Houdini",
     "featured": false,
+    "category": "Asset",
     "tags": ["Asset", "Neon", "Modular"],
     "cover": "/images/thumbs/wooden-crate-thumb.png",
     "media": [

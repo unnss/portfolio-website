@@ -76,6 +76,7 @@ async function build() {
     projects,
     heroProjects: resolvedHero,
     heroFirstImage,
+    currentPage: 'home',
   });
   writeFile(path.join(OUTPUT_DIR, 'index.html'), withBasePath(indexHtml));
 
@@ -84,7 +85,7 @@ async function build() {
   for (const project of projects) {
     const projectHtml = await ejs.renderFile(
       path.join(VIEWS_DIR, 'project.ejs'),
-      { project }
+      { project, currentPage: 'project' }
     );
     writeFile(
       path.join(OUTPUT_DIR, 'project', project.slug, 'index.html'),
@@ -92,7 +93,27 @@ async function build() {
     );
   }
 
-  console.log(`Built ${projects.length + 1} pages into /docs`);
+  // Categorized Projects index — same grouping logic as the /projects
+  // route in server.js
+  const grouped = {};
+  projects.forEach((p) => {
+    const category = p.category || 'Other';
+    if (!grouped[category]) grouped[category] = [];
+    grouped[category].push(p);
+  });
+  const projectsHtml = await ejs.renderFile(path.join(VIEWS_DIR, 'projects.ejs'), {
+    grouped,
+    currentPage: 'project',
+  });
+  writeFile(path.join(OUTPUT_DIR, 'projects', 'index.html'), withBasePath(projectsHtml));
+
+  // About page
+  const aboutHtml = await ejs.renderFile(path.join(VIEWS_DIR, 'about.ejs'), {
+    currentPage: 'about',
+  });
+  writeFile(path.join(OUTPUT_DIR, 'about', 'index.html'), withBasePath(aboutHtml));
+
+  console.log(`Built ${projects.length + 3} pages into /docs`);
 }
 
 build();

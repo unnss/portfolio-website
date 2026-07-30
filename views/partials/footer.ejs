@@ -1,7 +1,18 @@
 </main>
-  <footer>
-    <p>Contact: ldskimje@gmail.com</p>
-    <p>Copyright &copy; <%= new Date().getFullYear() %> Juneon Kim. All rights reserved.</p>
-  </footer>
+  <% if (currentPage === 'home') { %>
+    <footer>
+      <p>Copyright &copy; <%= new Date().getFullYear() %> Juneon Kim. All rights reserved.</p>
+    </footer>
+  <% } else { %>
+    <footer class="footer-expanded">
+      <p>Contact: <a href="mailto:ldskimje@gmail.com">ldskimje@gmail.com</a></p>
+      <div class="footer-links">
+        <a href="https://artstation.com/yourname" target="_blank" rel="noopener">ArtStation</a>
+        <a href="https://linkedin.com/in/yourname" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Copyright &copy; <%= new Date().getFullYear() %> Juneon Kim. All rights reserved.</p>
+    </footer>
+  <% } %>
 </body>
 </html>

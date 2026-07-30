@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+
+<h1>Projects</h1>
+<p class="page-intro">A full index of my work, grouped by category.</p>
+
+<% Object.keys(grouped).forEach(category => { %>
+  <h2 class="section-label"><%= category %></h2>
+  <div class="grid">
+    <% grouped[category].forEach(p => { %>
+      <a href="/project/<%= p.slug %>" class="card">
+        <div class="thumb-wrap">
+          <img src="<%= p.cover %>" alt="<%= p.title %>" loading="lazy">
+        </div>
+        <h3><%= p.title %></h3>
+      </a>
+    <% }) %>
+  </div>
+<% }) %>
+
+<%- include('partials/footer') %>
