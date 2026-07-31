@@ -1,0 +1,30 @@
+name: Node Build
+
+# This tells GitHub to run the workflow whenever you push code
+on:
+  push:
+    branches:
+      - main # Change this if your default branch is 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Sets up a fresh Linux environment
+
+    steps:
+      # 1. Grabs your repository's code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Installs Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Specify your Node version here
+
+      # 3. Installs your project dependencies (if you have a package.json)
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Runs your custom build script
+      - name: Run build script
+        run: node build.js
