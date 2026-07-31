@@ -10,6 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest # Sets up a fresh Linux environment
 
+    # Needed by the commit step below — without it the push is rejected
+    permissions:
+      contents: write
+
     steps:
       # 1. Grabs your repository's code
       - name: Checkout code
@@ -28,3 +32,23 @@ jobs:
       # 4. Runs your custom build script
       - name: Run build script
         run: node build.js
+
+      # 5. Commits the rebuilt /docs back to the repo.
+      #
+      # This step is what actually publishes. Without it the workflow built
+      # the site into the runner and then threw it away, so GitHub Pages
+      # kept serving whatever /docs you last committed by hand.
+      #
+      # "[skip ci]" isn't strictly needed — pushes made with GITHUB_TOKEN
+      # don't retrigger workflows — but it makes the intent obvious.
+      - name: Commit rebuilt site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          if git diff --staged --quiet; then
+            echo "No changes to /docs — nothing to publish."
+          else
+            git commit -m "Rebuild /docs [skip ci]"
+            git push
+          fi

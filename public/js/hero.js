@@ -128,8 +128,8 @@
     }
 
     const project = heroProjects[projectIndex];
-    heroTag.textContent = project.title + ' — ' + project.engine;
-    heroInfoTitle.textContent = project.title + ' — ' + project.engine;
+    heroTag.textContent = project.title;
+    heroInfoTitle.textContent = project.title;
     heroInfoDesc.textContent = project.description;
     heroLink.href = withBase('/project/' + project.slug);
 
