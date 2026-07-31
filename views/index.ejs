@@ -44,7 +44,10 @@
       <div class="thumb-wrap">
         <img src="<%= p.cover %>" alt="<%= p.title %>" loading="lazy">
       </div>
-      <h3><%= p.title %></h3>
+      <div class="card-meta">
+        <h3><%= p.title %></h3>
+        <%- include('partials/program-icons', { programs: p.programs }) %>
+      </div>
     </a>
   <% }) %>
 </div>

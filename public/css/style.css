@@ -271,11 +271,14 @@ main {
   letter-spacing: -0.01em;
   margin: 0 0 0.6rem;
 }
+/* The project's short description — italic so it reads as a blurb rather
+   than as body copy. Matches .project-lead on the project pages. */
 .hero-info p {
   max-width: 65ch;
   color: var(--text-muted);
   margin: 0;
   font-family: var(--font-body);
+  font-style: italic;
   text-transform: none;
   letter-spacing: normal;
 }
@@ -335,13 +338,63 @@ main {
   object-fit: cover;
 }
 
+/* Title row: name on the left, the programs used on the right */
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.65rem 0.9rem 0.7rem;
+}
+
 .card h3 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   margin: 0;
-  padding: 1rem 1.1rem 1.2rem;
+  padding: 0;
   letter-spacing: -0.01em;
+}
+
+/* ---- Program logos ---- */
+.program-icons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+.program-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+}
+/* Logos are inline SVG drawn in currentColor, so they tint with the card */
+.program-logo {
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+  color: var(--text-muted);
+}
+.card:hover .program-logo {
+  opacity: 1;
+  color: var(--text);
+}
+/* Stand-in for any program that has no `paths` in data/program-icons.js */
+.program-abbr {
+  display: inline-block;
+  padding: 0 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
 }
 
 /* ---- Project detail page ---- */
@@ -371,18 +424,44 @@ main > p {
   margin-bottom: 2.5rem;
 }
 
-.media-stack {
+/* Short blurb under the tags — italic, to set it apart from the written
+   explanation in .project-body below */
+.project-lead {
+  font-style: italic;
+}
+
+/* Ordered mix of paragraphs and media — any project can have any number
+   of each, in any order */
+.project-body {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
   padding-bottom: 4rem;
 }
 
-.media-stack img,
-.media-stack video {
+.project-body p {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.project-body figure {
+  margin: 0;
+}
+
+.project-body img,
+.project-body video {
   width: 100%;
   border-radius: var(--radius);
   border: 1px solid var(--border);
+}
+
+.project-body figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
 }
 
 /* ---- Back link ---- */
@@ -656,6 +735,49 @@ footer {
 footer p { margin: 0; }
 footer a:hover { color: var(--rim); }
 
+/* ---- Floating back-to-top button ---- */
+/* Hidden until the real header scrolls out of view (toggled by
+   /js/floating-nav.js), then pinned to the right edge, vertically centered. */
+.floating-nav {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  /* translateY(-50%) does the vertical centering, so the entrance offset
+     has to be composed with it rather than replacing it */
+  transform: translateY(-50%) translateX(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.floating-nav.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%);
+}
+
+.floating-nav-toggle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.floating-nav-toggle:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.floating-nav-toggle svg { width: 20px; height: 20px; }
+
 /* ---- Focus states (accessibility) ---- */
 a:focus-visible,
 button:focus-visible {
@@ -669,6 +791,7 @@ button:focus-visible {
   .nav-links a::after,
   .back-link,
   .social-links a,
+  .floating-nav,
   .hero-media img {
     transition: none !important;
   }

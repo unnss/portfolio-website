@@ -1,0 +1,37 @@
+<%
+  /* Renders the small program logos shown in a card's title row.
+     Include it passing the project's `programs` array as a local.
+
+     The logo data itself lives in data/program-icons.js — add or edit
+     logos there, not here. It arrives as the `programIcons` local, set
+     once in server.js and build.js. */
+  const icons = (typeof programIcons !== 'undefined' && programIcons) ? programIcons : {};
+  const list = (typeof programs !== 'undefined' && programs) ? programs : [];
+
+  const metaFor = (name) => {
+    const meta = icons[String(name).toLowerCase().trim()] || {};
+    return {
+      // Each path is either a plain 'd' string (drawn in currentColor, so
+      // the logo tints with the card) or { d, fill } to keep a brand color
+      paths: meta.paths || null,
+      viewBox: meta.viewBox || '0 0 24 24',
+      fillRule: meta.fillRule || null,
+      abbr: meta.abbr || String(name).replace(/[^A-Za-z0-9]/g, '').slice(0, 2).toUpperCase(),
+    };
+  };
+%>
+<% if (list.length) { %>
+  <ul class="program-icons">
+    <% list.forEach((name) => { const m = metaFor(name); %>
+      <li class="program-badge" title="<%= name %>">
+        <% if (m.paths && m.paths.length) { %>
+          <svg class="program-logo" viewBox="<%= m.viewBox %>" fill="currentColor"<% if (m.fillRule) { %> fill-rule="<%= m.fillRule %>"<% } %> role="img" aria-label="<%= name %>" focusable="false">
+            <% m.paths.forEach((p) => { %><% if (typeof p === 'string') { %><path d="<%= p %>"/><% } else { %><path d="<%= p.d %>"<% if (p.fill) { %> fill="<%= p.fill %>"<% } %>/><% } %><% }) %>
+          </svg>
+        <% } else { %>
+          <span class="program-abbr" aria-label="<%= name %>" role="img"><%= m.abbr %></span>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

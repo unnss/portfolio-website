@@ -5,6 +5,10 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+// Available to every res.render() without passing it each time — the
+// program-icons partial reads it. Edit the logos in data/program-icons.js.
+app.locals.programIcons = require('./data/program-icons');
+
 const getProjects = () => JSON.parse(fs.readFileSync('./data/projects.json'));
 
 // Same priority as imagesFor() in hero.js: dedicated wide heroImages first,

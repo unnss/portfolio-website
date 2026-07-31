@@ -5,15 +5,24 @@
     "engine": "Unreal Engine 5",
     "featured": true,
     "category": "Environment",
-    "tags": ["Unreal Engine 5"],
+    "tags": ["Full Environment"],
+    "programs": ["Unreal Engine 5", "Autodesk Maya", "Substance Painter", "Substance Designer", "SideFX Houdini"],
     "cover": "/images/thumbs/abandoned-train-station-thumb.png",
     "heroImages": [
       "/images/hero/abandoned-train-station/abandoned-train-station-wide-01.png"
     ],
-    "media": [
-      { "type": "image", "src": "/images/full/abandoned-train-station/shot1.png" }
-    ],
-    "description": "Personal project."
+    "description": "Personal project.",
+    "body": [
+      {
+        "type": "text",
+        "text": "Replace this paragraph with how the project started — the reference or concept you worked from, the look you were aiming for, and the constraints you set yourself."
+      },
+      { "type": "image", "src": "/images/full/abandoned-train-station/shot1.png" },
+      {
+        "type": "text",
+        "text": "Replace this one with a specific problem you solved and how — the Houdini foliage tool, the lighting setup, whatever you want to walk through. Add as many text and image blocks as you need, in any order."
+      }
+    ]
   },
   {
     "slug": "dragon-kisser",
@@ -21,16 +30,29 @@
     "engine": "Unreal Engine 5",
     "featured": true,
     "category": "Environment",
-    "tags": ["Game Environment", "Real-Time", "Unreal Engine 5"],
+    "tags": ["Game Environment", "Real-Time"],
+    "programs": ["Unreal Engine 5", "Autodesk Maya", "Substance Painter", "Substance Designer", "Maxon Zbrush"],
     "cover": "/images/thumbs/dk-thumb.png",
     "heroImages": [
       "/images/hero/dragon-kisser/dk-wide-01.png"
     ],
-    "media": [
+    "description": "A environment made for BYU Video Game Capston project.",
+    "body": [
+      {
+        "type": "text",
+        "text": "Replace this paragraph with your role on the team, what you owned, and how the environment brief came together."
+      },
       { "type": "image", "src": "/images/full/Dragon-Kisser/Jun_Materials.png" },
-      { "type": "image", "src": "/images/full/Dragon-Kisser/Jun_Decals.png" }
-    ],
-    "description": "A environment made for BYU Video Game Capston project."
+      {
+        "type": "text",
+        "text": "Replace this one with a walkthrough of the master material — what the in-engine mask drawing let the team do, and why you built it that way."
+      },
+      { "type": "image", "src": "/images/full/Dragon-Kisser/Jun_Decals.png" },
+      {
+        "type": "text",
+        "text": "Replace this one with the decal and trim-sheet work, and how you kept the scene inside its polygon budget."
+      }
+    ]
   },
   {
     "slug": "wooden-crate",
@@ -38,14 +60,23 @@
     "engine": "Houdini",
     "featured": false,
     "category": "Asset",
-    "tags": ["Asset", "Neon", "Modular"],
+    "tags": ["Asset", "Shading", "Retopology"],
+    "programs": ["Autodesk Maya", "Substance Painter", "Substance Designer", "SideFX Houdini"],
     "cover": "/images/thumbs/wooden-crate-thumb.png",
-    "media": [
+    "description": "Asset material.",
+    "body": [
+      {
+        "type": "text",
+        "text": "Replace this paragraph with the goal for this asset and the high-to-low workflow you used to get there."
+      },
       { "type": "image", "src": "/images/full/Wooden-Crate/front.png" },
       { "type": "image", "src": "/images/full/Wooden-Crate/back.png" },
       { "type": "image", "src": "/images/full/Wooden-Crate/top.png" },
-      { "type": "image", "src": "/images/full/Wooden-Crate/front_right.png" }
-    ],
-    "description": "Asset material."
+      { "type": "image", "src": "/images/full/Wooden-Crate/front_right.png" },
+      {
+        "type": "text",
+        "text": "Replace this one with notes on the texturing pass — the material breakdown, the bake, and the final texel density."
+      }
+    ]
   }
 ]

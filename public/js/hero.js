@@ -50,19 +50,18 @@
 
   let projectIndex = 0;
   let imageIndex = 0;
-  let justSwiped = false;
 
   // Hero slides prefer a project's dedicated `heroImages` — wide (21:9)
   // renders composed specifically for this banner — over the images in its
-  // `media` array, which are meant for the project detail page instead and
-  // are usually a different aspect ratio. Falls back to `media` images
+  // `body` blocks, which are meant for the project detail page instead and
+  // are usually a different aspect ratio. Falls back to `body` images
   // (then the cover) for any project that doesn't have heroImages yet, so
   // nothing breaks for projects you haven't made wide versions for.
   function imagesFor(project) {
     if (project.heroImages && project.heroImages.length) {
       return project.heroImages;
     }
-    const imgs = (project.media || [])
+    const imgs = (project.body || project.media || [])
       .filter((m) => m.type === 'image')
       .map((m) => m.src);
     return imgs.length ? imgs : [project.cover];
@@ -177,9 +176,20 @@
   let dragging = false;
   const SWIPE_THRESHOLD_RATIO = 0.5; // must drag past 50% of the image's own width
 
+  // Click-vs-drag: a press that never travels more than CLICK_SLOP pixels
+  // is a click and should follow the link. Anything past that is a drag,
+  // and the click the browser fires on release must be swallowed — whether
+  // or not the drag went far enough to actually change image. Measuring
+  // travel (rather than only flagging successful swipes, as before) is what
+  // stops a short drag-and-release from navigating away.
+  const CLICK_SLOP = 5;
+  let movedPastSlop = false;
+  let suppressClick = false;
+
   function startDrag(x) {
     dragging = true;
-    justSwiped = false;
+    movedPastSlop = false;
+    suppressClick = false;   // fresh press — don't let a stale flag eat this click
     startX = currentX = x;
     heroMedia.classList.add('is-dragging');
     setTrackTransition('none');   // track the finger/cursor with no lag
@@ -189,6 +199,7 @@
     if (!dragging) return;
     currentX = x;
     const delta = currentX - startX;
+    if (Math.abs(delta) > CLICK_SLOP) movedPastSlop = true;
     setTrackTransform(
       'calc(-100% + ' + delta + 'px)',
       'calc(0% + ' + delta + 'px)',
@@ -200,13 +211,14 @@
     if (!dragging) return;
     dragging = false;
     heroMedia.classList.remove('is-dragging');
+    // Set before any early return below, so every drag suppresses its click
+    suppressClick = movedPastSlop;
     const delta = currentX - startX;
     const images = imagesFor(heroProjects[projectIndex]);
     const trackWidth = heroMedia.getBoundingClientRect().width;
     const threshold = trackWidth * SWIPE_THRESHOLD_RATIO;
 
     if (Math.abs(delta) > threshold && images.length > 1) {
-      justSwiped = true;
       const dir = delta < 0 ? 1 : -1;   // +1 = advance to next, -1 = back to previous
       setTrackTransition('transform 0.28s ease');
       if (dir > 0) {
@@ -260,12 +272,15 @@
   // drag when the cursor exits the document rather than leaving it stuck.
   document.addEventListener('mouseleave', endDrag);
 
+  // Runs in the capture phase so the click is stopped before it can reach
+  // the link's default navigation.
   heroLink.addEventListener('click', (e) => {
-    if (justSwiped) {
+    if (suppressClick) {
       e.preventDefault();
-      justSwiped = false;
+      e.stopPropagation();
     }
-  });
+    suppressClick = false;
+  }, true);
 
   // Next/Previous — switch which featured project the hero displays.
   // Only wired up if the buttons exist in the markup (index.ejs only

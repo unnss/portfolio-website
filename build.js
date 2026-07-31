@@ -22,6 +22,14 @@ const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const getProjects = () =>
   JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/projects.json')));
 
+// Logo data for the program-icons partial. Mirrors app.locals.programIcons
+// in server.js so both renderers see the same thing.
+const PROGRAM_ICONS = require('./data/program-icons');
+
+// Renders a view with the locals every template gets, plus its own page data
+const renderView = (view, data) =>
+  ejs.renderFile(path.join(VIEWS_DIR, view), { programIcons: PROGRAM_ICONS, ...data });
+
 // Rewrites root-relative paths (href="/..." and src="/...") so links and
 // assets still resolve correctly if the site is served from a sub-path.
 function withBasePath(html) {
@@ -64,15 +72,17 @@ async function build() {
   const resolvedHero = heroProjects.length ? heroProjects : [projects[0]];
 
   // Same priority as imagesFor() in hero.js: dedicated wide heroImages
-  // first, then media images, then the cover.
+  // first, then body images, then the cover.
   const firstProject = resolvedHero[0];
   const firstProjectImages = (firstProject.heroImages && firstProject.heroImages.length)
     ? firstProject.heroImages
-    : (firstProject.media || []).filter((m) => m.type === 'image').map((m) => m.src);
+    : (firstProject.body || firstProject.media || [])
+        .filter((m) => m.type === 'image')
+        .map((m) => m.src);
   const heroFirstImage = firstProjectImages.length ? firstProjectImages[0] : firstProject.cover;
 
   // Home page — same data server.js would have passed to index.ejs
-  const indexHtml = await ejs.renderFile(path.join(VIEWS_DIR, 'index.ejs'), {
+  const indexHtml = await renderView('index.ejs', {
     projects,
     heroProjects: resolvedHero,
     heroFirstImage,
@@ -83,10 +93,10 @@ async function build() {
   // One page per project, at /project/<slug>/ — matches your existing
   // href="/project/<slug>" links without needing to rewrite them
   for (const project of projects) {
-    const projectHtml = await ejs.renderFile(
-      path.join(VIEWS_DIR, 'project.ejs'),
-      { project, currentPage: 'project' }
-    );
+    const projectHtml = await renderView('project.ejs', {
+      project,
+      currentPage: 'project',
+    });
     writeFile(
       path.join(OUTPUT_DIR, 'project', project.slug, 'index.html'),
       withBasePath(projectHtml)
@@ -101,14 +111,14 @@ async function build() {
     if (!grouped[category]) grouped[category] = [];
     grouped[category].push(p);
   });
-  const projectsHtml = await ejs.renderFile(path.join(VIEWS_DIR, 'projects.ejs'), {
+  const projectsHtml = await renderView('projects.ejs', {
     grouped,
     currentPage: 'project',
   });
   writeFile(path.join(OUTPUT_DIR, 'projects', 'index.html'), withBasePath(projectsHtml));
 
   // About page
-  const aboutHtml = await ejs.renderFile(path.join(VIEWS_DIR, 'about.ejs'), {
+  const aboutHtml = await renderView('about.ejs', {
     currentPage: 'about',
   });
   writeFile(path.join(OUTPUT_DIR, 'about', 'index.html'), withBasePath(aboutHtml));

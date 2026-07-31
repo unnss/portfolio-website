@@ -1,16 +1,30 @@
 <%- include('partials/header') %>
 <h1><%= project.title %></h1>
 <p class="tags"><%= project.tags.join(' · ') %></p>
-<p><%= project.description %></p>
+<p class="project-lead"><%= project.description %></p>
 
-<div class="media-stack">
-  <% project.media.forEach(m => { %>
-    <% if (m.type === 'image') { %>
-      <img src="<%= m.src %>" loading="lazy">
-    <% } else if (m.type === 'video') { %>
-      <video controls preload="metadata" playsinline>
-        <source src="<%= m.src %>" type="video/mp4">
-      </video>
+<%
+  /* `body` is an ordered list of blocks, so a project can have any number
+     of paragraphs and images in any arrangement. Falls back to the older
+     `media` array for any project that hasn't been converted yet. */
+  const blocks = project.body || (project.media || []);
+%>
+<div class="project-body">
+  <% blocks.forEach(b => { %>
+    <% if (b.type === 'text') { %>
+      <p><%= b.text %></p>
+    <% } else if (b.type === 'image') { %>
+      <figure>
+        <img src="<%= b.src %>" alt="<%= b.caption || project.title %>" loading="lazy">
+        <% if (b.caption) { %><figcaption><%= b.caption %></figcaption><% } %>
+      </figure>
+    <% } else if (b.type === 'video') { %>
+      <figure>
+        <video controls preload="metadata" playsinline>
+          <source src="<%= b.src %>" type="video/mp4">
+        </video>
+        <% if (b.caption) { %><figcaption><%= b.caption %></figcaption><% } %>
+      </figure>
     <% } %>
   <% }) %>
 </div>
