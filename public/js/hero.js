@@ -174,7 +174,7 @@
   let startX = 0;
   let currentX = 0;
   let dragging = false;
-  const SWIPE_THRESHOLD_RATIO = 0.3; // must drag past 50% of the image's own width
+  const SWIPE_THRESHOLD_RATIO = 0.3; // must drag past 30% of the image's own width
 
   // Click-vs-drag: a press that never travels more than CLICK_SLOP pixels
   // is a click and should follow the link. Anything past that is a drag,
