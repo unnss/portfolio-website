@@ -1,7 +1,7 @@
 [
   {
-    "slug": "abandoned-train-station",
-    "title": "Abandoned Train Station",
+    "slug": "abandoned-tram-station",
+    "title": "Abandoned Tram Station",
     "featured": true,
     "category": "Environment",
     "tags": [
@@ -16,13 +16,18 @@
     ],
     "cover": "/images/thumbs/abandoned-train-station-thumb.png",
     "heroImages": [
-      "/images/hero/abandoned-train-station/abandoned-train-station-wide-01.png"
+      "/images/hero/abandoned-train-station/abandoned-train-station-wide-01.png",
+      "/images/hero/abandoned-train-station/abandoned-train-station-wide-02.png"
     ],
-    "description": "Personal project.",
+    "description": "This is a personal 3D environment project showcasing my end-to-end workflow. I was responsible for all aspects of the scene's creation, including modeling, texturing, shading, and lighting, to bring this forgotten and atmospheric space to life.",
     "body": [
       {
+        "type": "image",
+        "src": "/images/full/abandoned-train-station/reference.png"
+      },
+      {
         "type": "text",
-        "text": "Replace this paragraph with how the project started — the reference or concept you worked from, the look you were aiming for, and the constraints you set yourself."
+        "text": "To establish the visual foundation for this project, I spent time on Google and ArtStation collecting references for overgrown foliage, weathered textures, and abandoned structures. To bridge the gap between real-world references and my imagination, I used generative AI to create targeted concept images for the abandoned tram and the broader station layout. This hybrid approach to reference gathering perfectly set the tone and color palette for the entire project. "
       },
       {
         "type": "image",
@@ -30,7 +35,7 @@
       },
       {
         "type": "text",
-        "text": "Replace this one with a specific problem you solved and how — the Houdini foliage tool, the lighting setup, whatever you want to walk through. Add as many text and image blocks as you need, in any order."
+        "text": "Placing the foliage efficiently while maintaining a highly organic feel was a key focus. I combined procedural and manual techniques by building a custom Houdini tool to scatter the base layer of vegetation. I then refined the scene by hand using the UE5 foliage brush, allowing me to perfectly art-direct the specific placement and final aesthetic."
       }
     ]
   },
@@ -54,27 +59,43 @@
     "heroImages": [
       "/images/hero/dragon-kisser/dk-wide-01.png"
     ],
-    "description": "A environment made for BYU Video Game Capston project.",
+    "description": "This is a student capstone project successfully published on Steam. As the Environment Lead, I worked closely with our Art Director to translate their visual design into a fully playable, optimized world. My primary focus was establishing a scalable environment pipeline for the team. By engineering procedural materials and optimizing our 3D asset creation, I helped ensure the final game was both visually cohesive and performant for our successful launch on Steam.",
     "body": [
       {
-        "type": "text",
-        "text": "Replace this paragraph with your role on the team, what you owned, and how the environment brief came together."
+        "type": "image",
+        "src": "/images/full/dragon-kisser/assets.png"
       },
       {
         "type": "image",
-        "src": "/images/full/Dragon-Kisser/Jun_Materials.png"
+        "src": "/images/full/dragon-kisser/houses.png"
       },
       {
         "type": "text",
-        "text": "Replace this one with a walkthrough of the master material — what the in-engine mask drawing let the team do, and why you built it that way."
+        "text": "To populate the world and give the architecture character, I modeled a diverse library of decorative house props. Because these assets were instanced heavily across the environment, strict polygon management was critical. I carefully optimized the topology of each model, balancing the vertex and triangle counts to ensure they were lightweight and game-ready while minimizing the impact on their silhouette and visual fidelity."
       },
       {
         "type": "image",
-        "src": "/images/full/Dragon-Kisser/Jun_Decals.png"
+        "src": "/images/full/Dragon-Kisser/decals.png"
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/materials.png"
       },
       {
         "type": "text",
-        "text": "Replace this one with the decal and trim-sheet work, and how you kept the scene inside its polygon budget."
+        "text": "To streamline asset creation and maximize performance, I established the project's overarching environment material pipeline. I engineered a unified master material applied across all environment props to significantly reduce draw calls. For architectural structures, I authored reusable trim sheets to maintain high texel density efficiently. Additionally, I developed a procedural master material leveraging in-engine mask drawing, which enabled rapid, scalable visual variations across housing assets without requiring extra texture sets."
+      },
+      {
+        "type": "image",
+        "src": "/images/full/Dragon-Kisser/minigame.png"
+      },
+      {
+        "type": "image",
+        "src": "/images/full/Dragon-Kisser/bard-stage.png"
+      },
+      {
+        "type": "text",
+        "text": "I was fully responsible for the minigame environment, handling its development from overall spatial layout to final scene assembly. I modeled the central stage asset by interpreting concept art from our Art Director, ensuring strong fidelity to the visual direction. Additionally, I made an animated candle fire material to add dynamic movement and atmosphere to the lighting."
       }
     ]
   },
@@ -95,12 +116,8 @@
       "SideFX Houdini"
     ],
     "cover": "/images/thumbs/wooden-crate-thumb.png",
-    "description": "Asset material.",
+    "description": "A material and look development study focused on realistic surface detailing and weathered wood response. Working with a provided base model, I was responsible for retopology, UV editing, texturing, shader setup, lighting, and rendering in Houdini using RenderMan.",
     "body": [
-      {
-        "type": "text",
-        "text": "Replace this paragraph with the goal for this asset and the high-to-low workflow you used to get there."
-      },
       {
         "type": "image",
         "src": "/images/full/Wooden-Crate/front.png"
@@ -116,10 +133,6 @@
       {
         "type": "image",
         "src": "/images/full/Wooden-Crate/front_right.png"
-      },
-      {
-        "type": "text",
-        "text": "Replace this one with notes on the texturing pass — the material breakdown, the bake, and the final texel density."
       }
     ]
   }

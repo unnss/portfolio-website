@@ -274,7 +274,11 @@ main {
 /* The project's short description — italic so it reads as a blurb rather
    than as body copy. Matches .project-lead on the project pages. */
 .hero-info p {
-  max-width: 65ch;
+  /* No cap — runs the full width of .hero-info, matching the title above
+     it. That block is already inset from the page edge, so it needs no
+     padding of its own. (It's wider than the hero image, which sits
+     narrower because the prev/next arrows flank it.) */
+  max-width: none;
   color: var(--text-muted);
   margin: 0;
   font-family: var(--font-body);
@@ -425,9 +429,13 @@ main > p {
 }
 
 /* Short blurb under the tags — italic, to set it apart from the written
-   explanation in .project-body below */
+   explanation in .project-body below. Overrides the 68ch cap that
+   `main > p` sets, so it runs the full column width like the body text.
+   The right padding stops the line ending flush against the page edge. */
 .project-lead {
   font-style: italic;
+  max-width: none;
+  padding-right: 2rem;
 }
 
 /* Ordered mix of paragraphs and media — any project can have any number
@@ -440,7 +448,8 @@ main > p {
 }
 
 .project-body p {
-  max-width: 68ch;
+  max-width: none;        /* runs the full column width */
+  padding-right: 2rem;    /* but not flush against the page edge */
   margin: 0;
   color: var(--text-muted);
 }
@@ -818,6 +827,10 @@ button:focus-visible {
   /* Too narrow for a hanging indent — label goes back above its text */
   .edu-details { padding-right: 0; }
   .edu-details li { grid-template-columns: 1fr; row-gap: 0.15rem; }
+
+  /* No room to spare at this width — text runs edge to edge */
+  .project-lead,
+  .project-body p { padding-right: 0; }
 
   .contact-list { grid-template-columns: 1fr; gap: 1rem; }
   /* Icons above the copyright line rather than squeezed beside it */
