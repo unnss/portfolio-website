@@ -47,27 +47,34 @@ header {
   max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  /* Baseline, not center — the name, role and nav are three different
+     font sizes and should all end on the same line above the border */
+  align-items: baseline;
   gap: 1rem;         /* small, fixed gap — sits between name and role */
   flex-wrap: wrap;
   border-bottom: 1px solid var(--border);
-  padding: 1rem var(--page-padding) 0.5rem;
+  padding: 1.15rem var(--page-padding) 0.5rem;
 }
+/* line-height: 1 everywhere below, so no item carries extra half-leading
+   under its baseline and pads itself away from the border */
 header h1 {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.55rem, 4vw, 2.2rem);
+  line-height: 1;
   letter-spacing: -0.02em;
   margin: 0;
 }
 header p {
   font-family: var(--font-mono);
   font-size: 0.8rem;
+  line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0;
-  padding-left: 1rem;
+  /* Vertical padding is what gives the divider rule its height */
+  padding: 0.2rem 0 0.2rem 1rem;
   border-left: 1.5px solid var(--border);
 }
 .nav-links {
@@ -76,6 +83,7 @@ header p {
   gap: 2rem;
   font-family: var(--font-mono);
   font-size: 0.8rem;
+  line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -397,12 +405,13 @@ main > p {
   display: flex;
   align-items: center;
   gap: 3rem;
-  padding: 3rem 0 4rem;
+  padding: 3rem 0 1.5rem;
   flex-wrap: wrap;
 }
 .about-photo {
-  width: 280px;
-  height: 280px;
+  width: 300px;
+  aspect-ratio: 3 / 4;      /* portrait crop, matches a headshot */
+  height: auto;
   object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -432,60 +441,220 @@ main > p {
   color: var(--text-muted);
 }
 
-/* ---- Home page contact section ---- */
-.contact-section {
+/* Resume-style blocks below the intro: Technical Skills, Education */
+.about-section {
+  padding-bottom: 2rem;
+}
+.about-section:last-of-type {
   padding-bottom: 4rem;
 }
-.contact-section > p {
-  color: var(--text-muted);
-  max-width: 60ch;
+
+/* -- Technical Skills -- */
+.skill-list {
+  margin: 1.25rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
-.contact-email a {
+.skill-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;   /* label column, then the tags */
+  gap: 1.25rem;
+  align-items: baseline;
+}
+.skill-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rim);
+  padding-top: 0.35rem;   /* nudges the label onto the first tag row */
+}
+.skill-row dd {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-tag {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: border-color 0.2s ease;
+}
+.skill-tag:hover { border-color: var(--accent); }
+
+/* -- Education -- */
+.edu-entry {
+  margin-top: 1.25rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--border);
+}
+.edu-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.edu-head h3 {
   font-family: var(--font-display);
-  font-size: 1.4rem;
   font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.edu-date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.edu-school {
+  color: var(--accent);
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+}
+.edu-details {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0 2rem 0 0;   /* runs the full column width, minus a little breathing room */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+/* Label sits in its own column so wrapped lines hang clear of it rather
+   than running back underneath "RELEVANT COURSEWORK:" */
+.edu-details li {
+  position: relative;
+  padding-left: 1rem;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 0.5rem;
+  align-items: baseline;
+}
+.edu-details li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--rim);
+}
+.edu-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* ---- Home page contact section ---- */
+.contact-section {
+  padding: 0.5rem 0 4rem;
+}
+/* Three columns of "Label: address" — entries flow left-to-right, so a
+   fourth link starts a second row */
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem 2rem;
+}
+.contact-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+/* Decorative only — marks which service each row is. Not a link, no
+   hover state; the address next to it is the clickable part. */
+.contact-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--rim);
+  /* Baseline-aligned SVGs sit on the baseline and read a touch high */
+  transform: translateY(2px);
+}
+.contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rim);
+  flex-shrink: 0;
+}
+.contact-list a {
   color: var(--text);
   transition: color 0.2s ease;
+  word-break: break-word;   /* long URLs shouldn't push the column wider */
 }
-.contact-email a:hover { color: var(--accent); }
+.contact-list a:hover { color: var(--accent); }
 
-/* Row of social/portfolio links — used in the home Contact section and
-   in the expanded footer on Project/About pages */
-.footer-links {
+/* ---- Social icon row ---- */
+/* Shared by the home Contact section and the footer. Icons are inline
+   SVG, so they take their color from `color` and recolor on hover. */
+.social-links {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+  align-items: center;
+  gap: 0.6rem;
 }
-.footer-links a { transition: color 0.2s ease; }
-.footer-links a:hover { color: var(--rim); }
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease,
+              background 0.2s ease, transform 0.2s ease;
+}
+.social-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+}
+.social-links svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
 
 /* ---- Footer ---- */
+/* Copyright left, icons right — width-matched to the header above it */
 footer {
   border-top: 1px solid var(--border);
-  padding: 1.0rem var(--page-padding);
-  text-align: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.25rem var(--page-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--text-muted);
 }
+footer p { margin: 0; }
 footer a:hover { color: var(--rim); }
-
-/* Expanded variant shown on Project/About pages — contact + links stacked
-   above the copyright line, still centered like the plain footer */
-footer.footer-expanded {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-footer.footer-expanded p:first-child {
-  color: var(--text);
-  margin: 0 0 0.75rem;
-}
-footer.footer-expanded .footer-links {
-  justify-content: center;
-  margin: 0 0 1.5rem;
-}
 
 /* ---- Focus states (accessibility) ---- */
 a:focus-visible,
@@ -499,9 +668,11 @@ button:focus-visible {
   .card,
   .nav-links a::after,
   .back-link,
+  .social-links a,
   .hero-media img {
     transition: none !important;
   }
+  .social-links a:hover { transform: none; }
 }
 
 /* ---- Responsive ---- */
@@ -514,6 +685,24 @@ button:focus-visible {
   }
   .nav-links { margin-left: 0; gap: 1.25rem; }
   .grid { grid-template-columns: 1fr; padding: 2rem 0; }
-  .about { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem 0 3rem; }
-  .about-photo { width: 200px; height: 200px; }
+  .about { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem 0 1rem; }
+  .about-photo { width: 210px; }
+
+  /* Label stacks above its tags instead of sitting in a side column */
+  .skill-row { grid-template-columns: 1fr; gap: 0.6rem; }
+  .skill-row dt { padding-top: 0; }
+  .edu-entry { padding-left: 1rem; }
+  /* Too narrow for a hanging indent — label goes back above its text */
+  .edu-details { padding-right: 0; }
+  .edu-details li { grid-template-columns: 1fr; row-gap: 0.15rem; }
+
+  .contact-list { grid-template-columns: 1fr; gap: 1rem; }
+  /* Icons above the copyright line rather than squeezed beside it */
+  footer {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+    text-align: center;   /* copyright wraps to 2 lines here — keep it centered */
+  }
+  footer .social-links { order: -1; }
 }
