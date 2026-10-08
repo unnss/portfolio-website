@@ -30,11 +30,15 @@ const PROGRAM_ICONS = require('./data/program-icons');
 const renderView = (view, data) =>
   ejs.renderFile(path.join(VIEWS_DIR, view), { programIcons: PROGRAM_ICONS, ...data });
 
-// Rewrites root-relative paths (href="/..." and src="/...") so links and
-// assets still resolve correctly if the site is served from a sub-path.
+// Prefix root-relative links, images, and every responsive-image candidate
+// so assets still resolve correctly when served from a sub-path.
 function withBasePath(html) {
   if (!BASE_PATH) return html;
-  return html.replace(/(href|src)="\//g, `$1="${BASE_PATH}/`);
+  return html
+    .replace(/(href|src)="\/(?!\/)/g, `$1="${BASE_PATH}/`)
+    .replace(/\bsrcset="([^"]*)"/g, (_, candidates) =>
+      `srcset="${candidates.replace(/(^|,\s*)\/(?!\/)/g, `$1${BASE_PATH}/`)}"`
+    );
 }
 
 function writeFile(outPath, contents) {

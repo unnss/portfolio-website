@@ -55,7 +55,14 @@
       "Substance Designer",
       "Maxon Zbrush"
     ],
-    "cover": "/images/thumbs/dk-thumb.png",
+    "cover": "/images/thumbs/dk-thumb-800.webp",
+    "coverWidth": 800,
+    "coverHeight": 500,
+    "coverSources": [
+      { "src": "/images/thumbs/dk-thumb-480.webp", "width": 480 },
+      { "src": "/images/thumbs/dk-thumb-800.webp", "width": 800 },
+      { "src": "/images/thumbs/dk-thumb-1200.webp", "width": 1200 }
+    ],
     "heroImages": [
       "/images/hero/dragon-kisser/dk-wide-01.png"
     ],

@@ -42,7 +42,7 @@
   <% projects.forEach(p => { %>
     <a href="/project/<%= p.slug %>" class="card">
       <div class="thumb-wrap">
-        <img src="<%= p.cover %>" alt="<%= p.title %>" loading="lazy">
+        <%- include('partials/thumbnail', { project: p }) %>
       </div>
       <div class="card-meta">
         <h3><%= p.title %></h3>

@@ -1,0 +1,13 @@
+<% /* Keep sizes aligned with main padding, .grid columns/gaps, and card borders in style.css.
+      Projects without coverSources continue to use their single cover image. */ -%>
+<img
+  src="<%= project.cover %>"
+<% if (project.coverSources && project.coverSources.length) { -%>
+    srcset="<%= project.coverSources.map(image => `${image.src} ${image.width}w`).join(', ') %>"
+    sizes="(max-width: 600px) calc(100vw - 3rem - 2px), (width < 724px) calc(100vw - 6rem - 2px), (width < 1052px) calc((100vw - 7.75rem) / 2 - 2px), (width < 1380px) calc((100vw - 9.5rem) / 3 - 2px), (width < 1500px) calc((100vw - 11.25rem) / 4 - 2px), calc((1500px - 11.25rem) / 4 - 2px)"
+<% } -%>
+<% if (project.coverWidth && project.coverHeight) { -%>
+    width="<%= project.coverWidth %>" height="<%= project.coverHeight %>"
+<% } -%>
+  alt="<%= project.title %>"
+  loading="lazy">
