@@ -1,7 +1,7 @@
 [
   {
-    "slug": "abandoned-tram-station",
-    "title": "Abandoned Tram Station",
+    "slug": "post-apocalyptic-train-station",
+    "title": "Post-Apocalyptic Train Station",
     "featured": true,
     "category": "Environment",
     "tags": [
@@ -14,16 +14,23 @@
       "Substance Designer",
       "SideFX Houdini"
     ],
-    "cover": "/images/thumbs/abandoned-train-station-thumb.png",
+    "cover": "/images/thumbs/post-apocalyptic-train-station/ts-800.webp",
+    "coverWidth": 800,
+    "coverHeight": 500,
+    "coverSources": [
+      { "src": "/images/thumbs/post-apocalyptic-train-station/ts-480.webp", "width": 480 },
+      { "src": "/images/thumbs/post-apocalyptic-train-station/ts-800.webp", "width": 800 },
+      { "src": "/images/thumbs/post-apocalyptic-train-station/ts-1200.webp", "width": 1200 }
+    ],
     "heroImages": [
-      "/images/hero/abandoned-train-station/abandoned-train-station-wide-01.png",
-      "/images/hero/abandoned-train-station/abandoned-train-station-wide-02.png"
+      "/images/hero/post-apocalyptic-train-station/ts-wide-01.webp",
+      "/images/hero/post-apocalyptic-train-station/ts-wide-02.webp"
     ],
     "description": "This is a personal 3D environment project showcasing my end-to-end workflow. I was responsible for all aspects of the scene's creation, including modeling, texturing, shading, and lighting, to bring this forgotten and atmospheric space to life.",
     "body": [
       {
         "type": "image",
-        "src": "/images/full/abandoned-train-station/reference.png"
+        "src": "/images/full/post-apocalyptic-train-station/reference.webp"
       },
       {
         "type": "text",
@@ -31,7 +38,7 @@
       },
       {
         "type": "image",
-        "src": "/images/full/abandoned-train-station/shot1.png"
+        "src": "/images/full/post-apocalyptic-train-station/shot1.webp"
       },
       {
         "type": "text",
@@ -55,16 +62,16 @@
       "Substance Designer",
       "Maxon Zbrush"
     ],
-    "cover": "/images/thumbs/dk-thumb-800.webp",
+    "cover": "/images/thumbs/dragon-kisser/dk-thumb-800.webp",
     "coverWidth": 800,
     "coverHeight": 500,
     "coverSources": [
-      { "src": "/images/thumbs/dk-thumb-480.webp", "width": 480 },
-      { "src": "/images/thumbs/dk-thumb-800.webp", "width": 800 },
-      { "src": "/images/thumbs/dk-thumb-1200.webp", "width": 1200 }
+      { "src": "/images/thumbs/dragon-kisser/dk-thumb-480.webp", "width": 480 },
+      { "src": "/images/thumbs/dragon-kisser/dk-thumb-800.webp", "width": 800 },
+      { "src": "/images/thumbs/dragon-kisser/dk-thumb-1200.webp", "width": 1200 }
     ],
     "heroImages": [
-      "/images/hero/dragon-kisser/dk-wide-01.png"
+      "/images/hero/dragon-kisser/dk-wide-01.webp"
     ],
     "description": "This is a student capstone project successfully published on Steam. As the Environment Lead, I worked closely with our Art Director to translate their visual design into a fully playable, optimized world. My primary focus was establishing a scalable environment pipeline for the team. By engineering procedural materials and optimizing our 3D asset creation, I helped ensure the final game was both visually cohesive and performant for our successful launch on Steam.",
     "body": [
@@ -122,24 +129,31 @@
       "Substance Designer",
       "SideFX Houdini"
     ],
-    "cover": "/images/thumbs/wooden-crate-thumb.png",
+    "cover": "/images/thumbs/wooden-crate/wooden-crate-thumb-800.webp",
+    "coverWidth": 800,
+    "coverHeight": 500,
+    "coverSources": [
+      { "src": "/images/thumbs/wooden-crate/wooden-crate-thumb-480.webp", "width": 480 },
+      { "src": "/images/thumbs/wooden-crate/wooden-crate-thumb-800.webp", "width": 800 },
+      { "src": "/images/thumbs/wooden-crate/wooden-crate-thumb-1200.webp", "width": 1200 }
+    ],
     "description": "A material and look development study focused on realistic surface detailing and weathered wood response. Working with a provided base model, I was responsible for retopology, UV editing, texturing, shader setup, lighting, and rendering in Houdini using RenderMan.",
     "body": [
       {
         "type": "image",
-        "src": "/images/full/Wooden-Crate/front.png"
+        "src": "/images/full/wooden-crate/front.webp"
       },
       {
         "type": "image",
-        "src": "/images/full/Wooden-Crate/back.png"
+        "src": "/images/full/wooden-crate/back.webp"
       },
       {
         "type": "image",
-        "src": "/images/full/Wooden-Crate/top.png"
+        "src": "/images/full/wooden-crate/top.webp"
       },
       {
         "type": "image",
-        "src": "/images/full/Wooden-Crate/front_right.png"
+        "src": "/images/full/wooden-crate/front-right.webp"
       }
     ]
   }
