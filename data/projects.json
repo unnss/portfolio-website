@@ -97,7 +97,7 @@
       },
       {
         "type": "text",
-        "text": "To streamline asset creation and maximize performance, I established the project's overarching environment material pipeline. I engineered a unified master material applied across all environment props to significantly reduce memory use and runtime costs. For architectural structures, I authored reusable trim sheets to maintain high texel density efficiently. Additionally, I developed a procedural master material leveraging in-engine mask drawing, which enabled rapid, scalable visual variations across housing assets without requiring extra texture sets."
+        "text": "I built an environment material pipeline around three master materials in Unreal Engine 5. One procedural master material used in-engine mask drawing to create variations across house assets without additional texture sets, while two other master materials covered the remaining props. I showed teammates how to use material instances to apply their textures and adjust parameters for their own assets. For architectural structures, I also authored reusable trim sheets to maintain consistent texel density. This work supported the art team’s visual requirements while addressing the programming team’s optimization needs."
       },
       {
         "type": "image",
