@@ -63,11 +63,11 @@
     "body": [
       {
         "type": "image",
-        "src": "/images/full/dragon-kisser/assets.png"
+        "src": "/images/full/dragon-kisser/assets.webp"
       },
       {
         "type": "image",
-        "src": "/images/full/dragon-kisser/houses.png"
+        "src": "/images/full/dragon-kisser/houses.webp"
       },
       {
         "type": "text",
@@ -75,11 +75,11 @@
       },
       {
         "type": "image",
-        "src": "/images/full/dragon-kisser/decals.png"
+        "src": "/images/full/dragon-kisser/decals.webp"
       },
       {
         "type": "image",
-        "src": "/images/full/dragon-kisser/materials.png"
+        "src": "/images/full/dragon-kisser/materials.webp"
       },
       {
         "type": "text",
@@ -87,11 +87,11 @@
       },
       {
         "type": "image",
-        "src": "/images/full/dragon-kisser/minigame.png"
+        "src": "/images/full/dragon-kisser/minigame.webp"
       },
       {
         "type": "image",
-        "src": "/images/full/dragon-kisser/bard-stage.png"
+        "src": "/images/full/dragon-kisser/bard-stage.webp"
       },
       {
         "type": "text",
