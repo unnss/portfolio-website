@@ -49,11 +49,13 @@
   {
     "slug": "dragon-kisser",
     "title": "Dragon Kisser",
+    "steamUrl": "https://store.steampowered.com/app/4681880/Dragon_Kisser/",
     "featured": true,
     "category": "Environment",
     "tags": [
       "Game Environment",
-      "Real-Time"
+      "Real-Time",
+      "Student Capstone"
     ],
     "programs": [
       "Unreal Engine 5",
@@ -73,8 +75,35 @@
     "heroImages": [
       "/images/hero/dragon-kisser/dk-wide-01.webp"
     ],
-    "description": "This is a student capstone project successfully published on Steam. As the Environment Lead, I worked closely with our Art Director to translate their visual design into a fully playable, optimized world. My primary focus was establishing a scalable environment pipeline for the team. By engineering procedural materials and optimizing our 3D asset creation, I helped ensure the final game was both visually cohesive and performant for our successful launch on Steam.",
+    "description": "This is a student capstone project successfully published on Steam. I worked on this project as an Environment Artist Lead who actively communicated with environment, art, and programming teams to balance visual quality with technical efficiency. I collaborated on creating medieval Spanish village surrounding the arena and was solely responsible for the rhythm-minigame background environment. I used Maya and ZBrush for modeling, Substance Painter and Substance Designer for texturing, Unreal Engine 5 as the game engine, and Perforce for version control.",
     "body": [
+      {
+        "type": "youtube",
+        "src": "https://youtu.be/cNzECQhTpEU",
+        "caption": "Dragon Kisser gameplay explanation"
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/dk-arena002.webp"
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/dk-arena001.webp"
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/dk-bard002.webp"
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/dk-bard001.webp"
+      },
+      
+      
+      {
+        "type": "text",
+        "text": ""
+      },
       {
         "type": "image",
         "src": "/images/full/dragon-kisser/assets.webp"
@@ -98,10 +127,6 @@
       {
         "type": "text",
         "text": "I built an environment material pipeline around three master materials in Unreal Engine 5. One procedural master material used in-engine mask drawing to create variations across house assets without additional texture sets, while two other master materials covered the remaining props. I showed teammates how to use material instances to apply their textures and adjust parameters for their own assets. For architectural structures, I also authored reusable trim sheets to maintain consistent texel density. This work supported the art team’s visual requirements while addressing the programming team’s optimization needs."
-      },
-      {
-        "type": "image",
-        "src": "/images/full/dragon-kisser/minigame.webp"
       },
       {
         "type": "image",

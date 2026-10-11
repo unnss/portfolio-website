@@ -2,6 +2,13 @@
 <h1><%= project.title %></h1>
 <p class="tags"><%= project.tags.join(' · ') %></p>
 <p class="project-lead"><%= project.description %></p>
+<% if (project.steamUrl) { %>
+  <p class="project-links">
+    <a class="project-external-link" href="<%= project.steamUrl %>" target="_blank" rel="noopener noreferrer" aria-label="View <%= project.title %> on Steam (opens in a new tab)">
+      View on Steam <span aria-hidden="true">↗</span>
+    </a>
+  </p>
+<% } %>
 
 <%
   /* `body` is an ordered list of blocks, so a project can have any number
@@ -18,6 +25,8 @@
         <img src="<%= b.src %>" alt="<%= b.caption || project.title %>" loading="lazy">
         <% if (b.caption) { %><figcaption><%= b.caption %></figcaption><% } %>
       </figure>
+    <% } else if (b.type === 'youtube') { %>
+      <%- include('partials/youtube', { video: b, projectTitle: project.title }) %>
     <% } else if (b.type === 'video') { %>
       <figure>
         <video controls preload="metadata" playsinline>
