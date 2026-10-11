@@ -20,20 +20,15 @@
     throw new Error('Invalid YouTube video URL in projects.json for ' + projectTitle);
   }
   const embedUrl = 'https://www.youtube-nocookie.com/embed/' + videoId + '?playsinline=1';
-  const watchUrl = 'https://www.youtube.com/watch?v=' + videoId;
 -%>
 <figure>
   <iframe
     class="project-youtube"
     src="<%= embedUrl %>"
-    title="<%= video.caption || projectTitle + ' video' %>"
+    title="<%= video.title || projectTitle + ' video' %>"
     width="1280" height="720"
     loading="lazy"
     referrerpolicy="strict-origin-when-cross-origin"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen></iframe>
-  <figcaption>
-    <% if (video.caption) { %><%= video.caption %> · <% } %>
-    <a class="project-youtube-link" href="<%= watchUrl %>" target="_blank" rel="noopener noreferrer" aria-label="Watch <%= video.caption || projectTitle %> on YouTube (opens in a new tab)">Watch on YouTube <span aria-hidden="true">↗</span></a>
-  </figcaption>
 </figure>
