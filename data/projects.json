@@ -98,15 +98,17 @@
         "type": "image",
         "src": "/images/full/dragon-kisser/dk-bard001.webp"
       },
-      
-      
       {
         "type": "text",
-        "text": ""
+        "text": "To populate the environment and give the architecture character, I modeled decorative props, such as lanterns, planters, and chimneys. Because these props were instanced throughout the environment, I kept their polygon counts low while preserving their overall shapes."
       },
       {
         "type": "image",
         "src": "/images/full/dragon-kisser/assets.webp"
+      },
+      {
+        "type": "text",
+        "text": "I also setup the house Blueprints so that we can easily customize houses with exposed parameters for selecting prop models."
       },
       {
         "type": "image",
@@ -114,11 +116,7 @@
       },
       {
         "type": "text",
-        "text": "To populate the world and give the architecture character, I modeled a diverse library of decorative house props. Because these assets were instanced heavily across the environment, strict polygon management was critical. I carefully optimized the topology of each model, balancing the vertex and triangle counts to ensure they were lightweight and game-ready while minimizing the impact on their silhouette and visual fidelity."
-      },
-      {
-        "type": "image",
-        "src": "/images/full/dragon-kisser/decals.webp"
+        "text": "I created brick and stucco texture sets using Substance Designer for the mask-driven material used on house walls. I also made a trim sheet for the remaining architectural components. We ended up using two materials to shade all the house assets: the wall-blending material and the material using the trim sheet."
       },
       {
         "type": "image",
@@ -126,15 +124,29 @@
       },
       {
         "type": "text",
-        "text": "I built an environment material pipeline around three master materials in Unreal Engine 5. One procedural master material used in-engine mask drawing to create variations across house assets without additional texture sets, while two other master materials covered the remaining props. I showed teammates how to use material instances to apply their textures and adjust parameters for their own assets. For architectural structures, I also authored reusable trim sheets to maintain consistent texel density. This work supported the art team’s visual requirements while addressing the programming team’s optimization needs."
+        "text": "I made one master material for houses that uses in-engine masking, which enables us to paint a mask while in Mesh Paint Mode. By doing so, brick and stucco materials could blend naturally in the engine and we could change the stucco coverage over bricks inside Unreal instead of authoring a new texture variation for each house in Substance Painter."
       },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/in-engine-masking-material.webp"
+      },
+      {
+        "type": "text",
+        "text": "I set up master materials that are reusable for all small props. I showed environment artists how to assign their textures in the material instance's parameter panel and create simple variations by adjusting parameters."
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/master-material.webp"
+      },
+      
+      
       {
         "type": "image",
         "src": "/images/full/dragon-kisser/bard-stage.webp"
       },
       {
         "type": "text",
-        "text": "I was fully responsible for the minigame environment, handling its development from overall spatial layout to final scene assembly. I modeled the central stage asset by interpreting concept art from our Art Director, ensuring strong fidelity to the visual direction. Additionally, I made an animated candle fire material to add dynamic movement and atmosphere to the lighting."
+        "text": "I was fully responsible for the minigame environment, handling its development from overall spatial layout to final scene assembly. I modeled the central stage asset by interpreting concept art from our Art Director, ensuring strong fidelity to the visual direction."
       }
     ]
   },
