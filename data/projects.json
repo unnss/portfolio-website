@@ -139,6 +139,11 @@
         "text": "I made one master material for houses that uses in-engine masking, which enables us to paint a mask while in Mesh Paint Mode. By doing so, brick and stucco materials could blend naturally in the engine and we could change the stucco coverage over bricks inside Unreal instead of authoring a new texture variation for each house in Substance Painter."
       },
       {
+        "type": "video",
+        "src": "/videos/dragon-kisser/mask-painting.mp4",
+        "caption": "Painting a mask in Unreal Engine 5 to vary stucco coverage over brick."
+      },
+      {
         "type": "image",
         "src": "/images/full/dragon-kisser/in-engine-masking-material.webp"
       },

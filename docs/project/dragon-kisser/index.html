@@ -19,51 +19,66 @@
   </header>
   <main>
 <h1>Dragon Kisser</h1>
-<p class="tags">Game Environment · Real-Time</p>
-<p class="project-lead">This is a student capstone project successfully published on Steam. As the Environment Lead, I worked closely with our Art Director to translate their visual design into a fully playable, optimized world. My primary focus was establishing a scalable environment pipeline for the team. By engineering procedural materials and optimizing our 3D asset creation, I helped ensure the final game was both visually cohesive and performant for our successful launch on Steam.</p>
+<p class="tags">Game Environment · Real-Time · Student Capstone</p>
+<p class="project-lead">This is a student capstone project successfully published on Steam. I worked on this project as an Environment Artist Lead who actively communicated with environment, art, and programming teams to balance visual quality with technical efficiency. I collaborated on creating a medieval Spanish village surrounding the arena and was solely responsible for the rhythm-minigame background environment. I used Maya and ZBrush for modeling, Substance Painter and Substance Designer for texturing, Unreal Engine 5 as the game engine, and Perforce for version control.</p>
+
+  <p class="project-links">
+    <a class="project-external-link" href="https://store.steampowered.com/app/4681880/Dragon_Kisser/" target="_blank" rel="noopener noreferrer" aria-label="View Dragon Kisser on Steam (opens in a new tab)">
+      View on Steam <span aria-hidden="true">↗</span>
+    </a>
+  </p>
+
 
 
 <div class="project-body">
   
     
       <figure>
-        <img src="/portfolio-website/images/full/dragon-kisser/assets.webp" alt="Dragon Kisser" loading="lazy">
+  <iframe
+    class="project-youtube"
+    src="https://www.youtube-nocookie.com/embed/cNzECQhTpEU?playsinline=1"
+    title="Dragon Kisser gameplay explanation"
+    width="1280" height="720"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>
+</figure>
+
+    
+  
+    
+      <p>The environment team&#39;s goal was to create an immersive atmosphere without distracting players from the core gameplay, while maintaining engaging visual elements. We arranged houses with different heights and roof shapes to create an irregular skyline behind the arena. We also placed small props to populate the environment and help players recognize the playable boundary.</p>
+    
+  
+    
+      <figure>
+        <img src="/portfolio-website/images/full/dragon-kisser/dk-arena002.webp" alt="Dragon Kisser" loading="lazy">
         
       </figure>
     
   
     
       <figure>
-        <img src="/portfolio-website/images/full/dragon-kisser/houses.webp" alt="Dragon Kisser" loading="lazy">
+        <img src="/portfolio-website/images/full/dragon-kisser/dk-arena001.webp" alt="Dragon Kisser" loading="lazy">
         
       </figure>
     
   
     
-      <p>To populate the world and give the architecture character, I modeled a diverse library of decorative house props. Because these assets were instanced heavily across the environment, strict polygon management was critical. I carefully optimized the topology of each model, balancing the vertex and triangle counts to ensure they were lightweight and game-ready while minimizing the impact on their silhouette and visual fidelity.</p>
+      <p>For the rhythm-minigame environment, I arranged the background to guide players&#39; attention toward the central stage by creating a leading line with props such as signs and lanterns. I also placed candles and rose petals to create a romantic atmosphere. I modeled the central stage asset by interpreting concept art from our Art Director.</p>
     
   
     
       <figure>
-        <img src="/portfolio-website/images/full/dragon-kisser/decals.webp" alt="Dragon Kisser" loading="lazy">
+        <img src="/portfolio-website/images/full/dragon-kisser/dk-bard002.webp" alt="Dragon Kisser" loading="lazy">
         
       </figure>
     
   
     
       <figure>
-        <img src="/portfolio-website/images/full/dragon-kisser/materials.webp" alt="Dragon Kisser" loading="lazy">
-        
-      </figure>
-    
-  
-    
-      <p>To streamline asset creation and maximize performance, I established the project&#39;s overarching environment material pipeline. I engineered a unified master material applied across all environment props to significantly reduce memory use and runtime costs. For architectural structures, I authored reusable trim sheets to maintain high texel density efficiently. Additionally, I developed a procedural master material leveraging in-engine mask drawing, which enabled rapid, scalable visual variations across housing assets without requiring extra texture sets.</p>
-    
-  
-    
-      <figure>
-        <img src="/portfolio-website/images/full/dragon-kisser/minigame.webp" alt="Dragon Kisser" loading="lazy">
+        <img src="/portfolio-website/images/full/dragon-kisser/dk-bard001.webp" alt="Dragon Kisser" loading="lazy">
         
       </figure>
     
@@ -76,7 +91,67 @@
     
   
     
-      <p>I was fully responsible for the minigame environment, handling its development from overall spatial layout to final scene assembly. I modeled the central stage asset by interpreting concept art from our Art Director, ensuring strong fidelity to the visual direction. Additionally, I made an animated candle fire material to add dynamic movement and atmosphere to the lighting.</p>
+      <p>To populate the environment and give the architecture character, I modeled decorative props, such as lanterns, planters, and chimneys. Because these props were instanced throughout the environment, I kept their polygon counts low while preserving their overall shapes.</p>
+    
+  
+    
+      <figure>
+        <img src="/portfolio-website/images/full/dragon-kisser/assets.webp" alt="Dragon Kisser" loading="lazy">
+        
+      </figure>
+    
+  
+    
+      <p>I also set up the house Blueprints so that we can easily customize houses with exposed parameters for selecting prop models.</p>
+    
+  
+    
+      <figure>
+        <img src="/portfolio-website/images/full/dragon-kisser/houses.webp" alt="Dragon Kisser" loading="lazy">
+        
+      </figure>
+    
+  
+    
+      <p>I created brick and stucco texture sets using Substance Designer for the mask-driven material used on house walls. I also made a trim sheet for the remaining architectural components. We ended up using two materials to shade all the house assets: the wall-blending material and the material using the trim sheet.</p>
+    
+  
+    
+      <figure>
+        <img src="/portfolio-website/images/full/dragon-kisser/materials.webp" alt="Dragon Kisser" loading="lazy">
+        
+      </figure>
+    
+  
+    
+      <p>I made one master material for houses that uses in-engine masking, which enables us to paint a mask while in Mesh Paint Mode. By doing so, brick and stucco materials could blend naturally in the engine and we could change the stucco coverage over bricks inside Unreal instead of authoring a new texture variation for each house in Substance Painter.</p>
+    
+  
+    
+      <figure>
+        <video controls preload="metadata" playsinline>
+          <source src="/portfolio-website/videos/dragon-kisser/mask-painting.mp4" type="video/mp4">
+        </video>
+        <figcaption>Painting a mask in Unreal Engine 5 to vary stucco coverage over brick.</figcaption>
+      </figure>
+    
+  
+    
+      <figure>
+        <img src="/portfolio-website/images/full/dragon-kisser/in-engine-masking-material.webp" alt="Dragon Kisser" loading="lazy">
+        
+      </figure>
+    
+  
+    
+      <p>I set up master materials that are reusable for all small props. I showed environment artists how to assign their textures in the material instance&#39;s parameter panel and create simple variations by adjusting parameters.</p>
+    
+  
+    
+      <figure>
+        <img src="/portfolio-website/images/full/dragon-kisser/master-material.webp" alt="Dragon Kisser" loading="lazy">
+        
+      </figure>
     
   
 </div>

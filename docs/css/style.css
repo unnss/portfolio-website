@@ -438,6 +438,24 @@ main > p {
   padding-right: 2rem;
 }
 
+/* Optional store link beneath a project's introduction. */
+.project-links { margin-top: -1rem; }
+.project-external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-weight: 500;
+}
+.project-external-link:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
 /* Ordered mix of paragraphs and media — any project can have any number
    of each, in any order */
 .project-body {
@@ -463,6 +481,17 @@ main > p {
   width: 100%;
   border-radius: var(--radius);
   border: 1px solid var(--border);
+}
+
+.project-youtube {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  min-height: 200px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #000;
 }
 
 .project-body figcaption {
