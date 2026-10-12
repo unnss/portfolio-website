@@ -75,12 +75,16 @@
     "heroImages": [
       "/images/hero/dragon-kisser/dk-wide-01.webp"
     ],
-    "description": "This is a student capstone project successfully published on Steam. I worked on this project as an Environment Artist Lead who actively communicated with environment, art, and programming teams to balance visual quality with technical efficiency. I collaborated on creating medieval Spanish village surrounding the arena and was solely responsible for the rhythm-minigame background environment. I used Maya and ZBrush for modeling, Substance Painter and Substance Designer for texturing, Unreal Engine 5 as the game engine, and Perforce for version control.",
+    "description": "This is a student capstone project successfully published on Steam. I worked on this project as an Environment Artist Lead who actively communicated with environment, art, and programming teams to balance visual quality with technical efficiency. I collaborated on creating a medieval Spanish village surrounding the arena and was solely responsible for the rhythm-minigame background environment. I used Maya and ZBrush for modeling, Substance Painter and Substance Designer for texturing, Unreal Engine 5 as the game engine, and Perforce for version control.",
     "body": [
       {
         "type": "youtube",
         "src": "https://youtu.be/cNzECQhTpEU",
         "title": "Dragon Kisser gameplay explanation"
+      },
+      {
+        "type": "text",
+        "text": "The environment team's goal was to create an immersive atmosphere without distracting players from the core gameplay, while maintaining engaging visual elements. We arranged houses with different heights and roof shapes to create an irregular skyline behind the arena. We also placed small props to populate the environment and help players recognize the playable boundary."
       },
       {
         "type": "image",
@@ -91,12 +95,20 @@
         "src": "/images/full/dragon-kisser/dk-arena001.webp"
       },
       {
+        "type": "text",
+        "text": "For the rhythm-minigame environment, I arranged the background to guide players' attention toward the central stage by creating a leading line with props such as signs and lanterns. I also placed candles and rose petals to create a romantic atmosphere. I modeled the central stage asset by interpreting concept art from our Art Director."
+      },
+      {
         "type": "image",
         "src": "/images/full/dragon-kisser/dk-bard002.webp"
       },
       {
         "type": "image",
         "src": "/images/full/dragon-kisser/dk-bard001.webp"
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/bard-stage.webp"
       },
       {
         "type": "text",
@@ -108,7 +120,7 @@
       },
       {
         "type": "text",
-        "text": "I also setup the house Blueprints so that we can easily customize houses with exposed parameters for selecting prop models."
+        "text": "I also set up the house Blueprints so that we can easily customize houses with exposed parameters for selecting prop models."
       },
       {
         "type": "image",
@@ -137,16 +149,6 @@
       {
         "type": "image",
         "src": "/images/full/dragon-kisser/master-material.webp"
-      },
-      
-      
-      {
-        "type": "image",
-        "src": "/images/full/dragon-kisser/bard-stage.webp"
-      },
-      {
-        "type": "text",
-        "text": "I was fully responsible for the minigame environment, handling its development from overall spatial layout to final scene assembly. I modeled the central stage asset by interpreting concept art from our Art Director, ensuring strong fidelity to the visual direction."
       }
     ]
   },
