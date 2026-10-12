@@ -144,6 +144,11 @@
         "caption": "Painting a mask in Unreal Engine 5 to vary stucco coverage over brick."
       },
       {
+        "type": "video",
+        "src": "/videos/dragon-kisser/house-shader.mp4",
+        "caption": "Adjusting exposed parameters for the brick and stucco material in Unreal Engine 5."
+      },
+      {
         "type": "image",
         "src": "/images/full/dragon-kisser/in-engine-masking-material.webp"
       },
