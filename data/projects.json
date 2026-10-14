@@ -137,6 +137,15 @@
         "src": "/images/full/dragon-kisser/houses.webp"
       },
       {
+        "type": "video",
+        "src": "/videos/dragon-kisser/house-blueprint.mp4",
+        "caption": "Changing house Blueprint parameters to swap decorative prop models."
+      },
+      {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/house-bp-graph.webp"
+      },
+      {
         "type": "text",
         "text": "I created brick and stucco texture sets using Substance Designer for the mask-driven material used on house walls. I also made a trim sheet for the remaining architectural components. We ended up using two materials to shade all the house assets: the wall-blending material and the material using the trim sheet."
       },
