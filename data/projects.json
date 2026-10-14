@@ -119,6 +119,16 @@
         "src": "/images/full/dragon-kisser/assets.webp"
       },
       {
+        "type": "video",
+        "src": "/videos/dragon-kisser/shutter-a-turntable.mp4",
+        "caption": "Shutter A turntable."
+      },
+      {
+        "type": "video",
+        "src": "/videos/dragon-kisser/chimney-b-turntable.mp4",
+        "caption": "Chimney B turntable."
+      },
+      {
         "type": "text",
         "text": "I also set up the house Blueprints so that we can easily customize houses with exposed parameters for selecting prop models."
       },
