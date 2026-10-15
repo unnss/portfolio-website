@@ -119,6 +119,10 @@
         "src": "/images/full/dragon-kisser/assets.webp"
       },
       {
+        "type": "image",
+        "src": "/images/full/dragon-kisser/prop-wireframe.webp"
+      },
+      {
         "type": "video",
         "src": "/videos/dragon-kisser/shutter-a-turntable.mp4",
         "caption": "Shutter A turntable."
