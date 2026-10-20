@@ -1,41 +1,34 @@
 const express = require('express');
-const fs = require('fs');
+const path = require('path');
+const { getProjects, heroSizes, BODY_SIZES } = require('./lib/projects');
 const app = express();
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Available to every res.render() without passing it each time — the
 // program-icons partial reads it. Edit the logos in data/program-icons.js.
 app.locals.programIcons = require('./data/program-icons');
+app.locals.bodyImageSizes = BODY_SIZES;
 
-const getProjects = () => JSON.parse(fs.readFileSync('./data/projects.json'));
-
-// Same priority as imagesFor() in hero.js: dedicated wide heroImages first,
-// then media images, then the cover.
-function firstHeroImage(project) {
-  const images = (project.heroImages && project.heroImages.length)
-    ? project.heroImages
-    : (project.media || []).filter(m => m.type === 'image').map(m => m.src);
-  return images.length ? images[0] : project.cover;
-}
-
-app.get('/', (req, res) => {
-  const projects = getProjects();
+app.get('/', async (req, res) => {
+  const projects = await getProjects();
   const heroProjects = projects.filter(p => p.featured);
   const resolvedHero = heroProjects.length ? heroProjects : [projects[0]];
-  const heroFirstImage = firstHeroImage(resolvedHero[0]);
+  const heroFirstImage = resolvedHero[0].heroSlides[0];
 
   res.render('index', {
     projects,
     heroProjects: resolvedHero,
     heroFirstImage,
+    heroImageSizes: heroSizes(resolvedHero.length),
     currentPage: 'home',   // controls both nav highlighting and which footer shows
   });
 });
 
-app.get('/project/:slug', (req, res) => {
-  const project = getProjects().find(p => p.slug === req.params.slug);
+app.get('/project/:slug', async (req, res) => {
+  const project = (await getProjects()).find(p => p.slug === req.params.slug);
   if (!project) return res.status(404).send('Not found');
   res.render('project', { project, currentPage: 'project' });
 });
@@ -44,8 +37,8 @@ app.get('/project/:slug', (req, res) => {
 // `category` value each project has — there's no fixed list to maintain,
 // so adding a project with a new category string (e.g. "Texturing")
 // automatically creates that section, in the order it's first seen.
-app.get('/projects', (req, res) => {
-  const projects = getProjects();
+app.get('/projects', async (req, res) => {
+  const projects = await getProjects();
   const grouped = {};
   projects.forEach((p) => {
     const category = p.category || 'Other';

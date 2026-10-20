@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
+const { getProjects, heroSizes, BODY_SIZES } = require('./lib/projects');
 
 // ---- Config ----
 // If your site will live at https://<username>.github.io/<repo-name>/
@@ -19,16 +20,13 @@ const OUTPUT_DIR = path.join(ROOT_DIR, 'docs');
 const VIEWS_DIR = path.join(ROOT_DIR, 'views');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 
-const getProjects = () =>
-  JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/projects.json')));
-
 // Logo data for the program-icons partial. Mirrors app.locals.programIcons
 // in server.js so both renderers see the same thing.
 const PROGRAM_ICONS = require('./data/program-icons');
 
 // Renders a view with the locals every template gets, plus its own page data
 const renderView = (view, data) =>
-  ejs.renderFile(path.join(VIEWS_DIR, view), { programIcons: PROGRAM_ICONS, ...data });
+  ejs.renderFile(path.join(VIEWS_DIR, view), { programIcons: PROGRAM_ICONS, bodyImageSizes: BODY_SIZES, ...data });
 
 // Prefix root-relative links, images, and every responsive-image candidate
 // so assets still resolve correctly when served from a sub-path.
@@ -60,6 +58,8 @@ function copyDir(src, dest) {
 }
 
 async function build() {
+  // Prepare responsive assets before copying public or replacing a working build.
+  const projects = await getProjects();
   // Start from a clean output folder each time
   fs.rmSync(OUTPUT_DIR, { recursive: true, force: true });
 
@@ -71,25 +71,17 @@ async function build() {
   // here but is worth ruling out as a source of missing files.
   fs.writeFileSync(path.join(OUTPUT_DIR, '.nojekyll'), '');
 
-  const projects = getProjects();
   const heroProjects = projects.filter((p) => p.featured);
   const resolvedHero = heroProjects.length ? heroProjects : [projects[0]];
 
-  // Same priority as imagesFor() in hero.js: dedicated wide heroImages
-  // first, then body images, then the cover.
-  const firstProject = resolvedHero[0];
-  const firstProjectImages = (firstProject.heroImages && firstProject.heroImages.length)
-    ? firstProject.heroImages
-    : (firstProject.body || firstProject.media || [])
-        .filter((m) => m.type === 'image')
-        .map((m) => m.src);
-  const heroFirstImage = firstProjectImages.length ? firstProjectImages[0] : firstProject.cover;
+  const heroFirstImage = resolvedHero[0].heroSlides[0];
 
   // Home page — same data server.js would have passed to index.ejs
   const indexHtml = await renderView('index.ejs', {
     projects,
     heroProjects: resolvedHero,
     heroFirstImage,
+    heroImageSizes: heroSizes(resolvedHero.length),
     currentPage: 'home',
   });
   writeFile(path.join(OUTPUT_DIR, 'index.html'), withBasePath(indexHtml));
@@ -130,4 +122,7 @@ async function build() {
   console.log(`Built ${projects.length + 3} pages into /docs`);
 }
 
-build();
+build().catch(error => {
+  console.error('Build failed:', error.message);
+  process.exitCode = 1;
+});

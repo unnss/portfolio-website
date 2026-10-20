@@ -45,7 +45,7 @@
     : '';
 
   function withBase(src) {
-    return basePrefix + src;
+    return src.startsWith('/') && !src.startsWith('//') ? basePrefix + src : src;
   }
 
   let projectIndex = 0;
@@ -58,13 +58,34 @@
   // (then the cover) for any project that doesn't have heroImages yet, so
   // nothing breaks for projects you haven't made wide versions for.
   function imagesFor(project) {
+    if (project.heroSlides && project.heroSlides.length) return project.heroSlides;
     if (project.heroImages && project.heroImages.length) {
-      return project.heroImages;
+      return project.heroImages.map(src => ({ src }));
     }
     const imgs = (project.body || project.media || [])
       .filter((m) => m.type === 'image')
       .map((m) => m.src);
-    return imgs.length ? imgs : [project.cover];
+    return (imgs.length ? imgs : [project.cover]).map(src => ({ src }));
+  }
+
+  // Match the first server-rendered image on every slide, including the two
+  // offscreen neighbors, so swiping never falls back to an oversized download.
+  const imageSizes = heroImage.getAttribute('sizes') || '100vw';
+  function setImage(element, image) {
+    element.sizes = imageSizes;
+    if (image.sources && image.sources.length > 1) {
+      element.srcset = image.sources.map(s => withBase(s.src) + ' ' + s.width + 'w').join(', ');
+    } else {
+      element.removeAttribute('srcset');
+    }
+    if (image.width && image.height) {
+      element.width = image.width;
+      element.height = image.height;
+    } else {
+      element.removeAttribute('width');
+      element.removeAttribute('height');
+    }
+    element.src = withBase(image.src);
   }
 
   function neighborIndices(images, index) {
@@ -97,10 +118,10 @@
     if (imageIndex >= images.length) imageIndex = 0;
     const { prev, next } = neighborIndices(images, imageIndex);
 
-    heroImagePrev.src = withBase(images[prev]);
-    heroImage.src = withBase(images[imageIndex]);
+    setImage(heroImagePrev, images[prev]);
+    setImage(heroImage, images[imageIndex]);
     heroImage.alt = project.title;
-    heroImageNext.src = withBase(images[next]);
+    setImage(heroImageNext, images[next]);
 
     setTrackTransition('none');
     setTrackTransform('-100%', '0%', '100%');

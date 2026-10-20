@@ -1,0 +1,7 @@
+<% if (image.sources && image.sources.length > 1) { -%>
+srcset="<%= image.sources.map(s => `${s.src} ${s.width}w`).join(', ') %>"
+<% } -%>
+sizes="<%= sizes %>"
+<% if (image.width && image.height) { -%>
+width="<%= image.width %>" height="<%= image.height %>"
+<% } -%>

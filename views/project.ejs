@@ -22,14 +22,15 @@
       <p><%= b.text %></p>
     <% } else if (b.type === 'image') { %>
       <figure>
-        <img src="<%= b.src %>" alt="<%= b.caption || project.title %>" loading="lazy">
+        <img <%- include('partials/media-attributes', { image: b, sizes: bodyImageSizes }) %>
+          src="<%= b.src %>" alt="<%= b.caption || project.title %>" loading="lazy" decoding="async">
         <% if (b.caption) { %><figcaption><%= b.caption %></figcaption><% } %>
       </figure>
     <% } else if (b.type === 'youtube') { %>
       <%- include('partials/youtube', { video: b, projectTitle: project.title }) %>
     <% } else if (b.type === 'video') { %>
       <figure>
-        <video controls preload="metadata" playsinline>
+        <video controls preload="metadata" playsinline<% if (b.width && b.height) { %> width="<%= b.width %>" height="<%= b.height %>"<% } %>>
           <source src="<%= b.src %>" type="video/mp4">
         </video>
         <% if (b.caption) { %><figcaption><%= b.caption %></figcaption><% } %>

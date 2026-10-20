@@ -1,0 +1,5 @@
+# New dependencies and media outputs are regenerated from the lockfile/source images.
+/node_modules/
+/.node_modules-before-media/
+/.cache/
+/public/images/generated/

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "build": "node build.js",
+    "prepare:media": "node scripts/prepare-media.js",
+    "test": "node --test test/*.test.js"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +15,9 @@
   "dependencies": {
     "ejs": "^6.0.1",
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "mp4box": "2.4.1",
+    "sharp": "0.35.5"
   }
 }
