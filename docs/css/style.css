@@ -212,8 +212,8 @@ main {
   pointer-events: none;
 }
 
-/* Left/right arrows: switch which featured project the hero shows.
-   Now sit outside .hero-media as ordinary flex items in .hero-row. */
+/* Project arrows flank the image on desktop and follow it on mobile. */
+.hero-arrow-prev { order: -1; }
 .hero-arrow {
   flex-shrink: 0;
   width: 40px;
@@ -844,6 +844,19 @@ button:focus-visible {
     gap: 0.75rem;
   }
   .nav-links { margin-left: 0; gap: 1.25rem; }
+
+  /* Give the artwork its own row; keep project controls below it. */
+  .hero-row { flex-wrap: wrap; gap: 0.75rem; }
+  .hero-media {
+    flex: 0 0 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .hero-arrow { width: 44px; height: 44px; }
+  .hero-arrow-prev { order: 0; }
+  /* The existing heading below the banner provides the mobile title. */
+  .hero-tag { display: none; }
+
   .grid { grid-template-columns: 1fr; padding: 2rem 0; }
   .about { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem 0 1rem; }
   .about-photo { width: 210px; }
